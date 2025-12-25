@@ -58,13 +58,13 @@ export const sendOEMToTelegram = async (data: OEMRegistrationData) => {
   const message = `
 💎 **HỢP TÁC CHIẾN LƯỢC OEM PARTNER** 💎
 ━━━━━━━━━━━━━━━━━━━━
-🏢 **Thương hiệu:** ${data.brandName.toUpperCase()}
-👤 **Đại diện:** ${data.contactName}
+👤 **Họ tên đối tác:** ${data.contactName.toUpperCase()}
 📞 **Số điện thoại:** ${data.phone}
-📊 **Quy mô chuỗi:** ${data.scale}
+🏢 **Thương hiệu cần OEM:** ${data.brandName.toUpperCase()}
+📊 **SL phòng máy đang có:** ${data.scale}
 ━━━━━━━━━━━━━━━━━━━━
-💬 **Lời nhắn đối tác:** 
-_${data.message || 'Muốn xây dựng thương hiệu iCafe riêng với công nghệ CAG.'}_
+💬 **Các yêu cầu khác:** 
+_${data.message || 'Không có ghi chú thêm.'}_
 ━━━━━━━━━━━━━━━━━━━━
 🚀 *Yêu cầu VIP - Xử lý ngay*
 ⏰ *Thời gian:* ${new Date().toLocaleString('vi-VN')}

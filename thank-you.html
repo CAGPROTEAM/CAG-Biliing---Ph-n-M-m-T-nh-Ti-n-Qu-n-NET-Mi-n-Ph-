@@ -1,0 +1,117 @@
+
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Cảm ơn bạn đã đăng ký - CAG Billing Pro</title>
+  <meta name="robots" content="noindex, follow">
+  
+  <style>
+    :root{
+        --logo-red:#d63031;
+        --logo-red-dark:#a82627;
+        --green:#27ae60;
+        --purple:#6c5ce7;
+        --purple-dark:#5f4ed5; /* Thêm màu tím đậm */
+        --black:#0b0b0b;
+        --muted:#6b7280;
+        --bg:#fbfdff;
+        --card:#ffffff
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Arial;color:var(--black);background:linear-gradient(180deg,#fbfdff,#f8fbff)}
+    .site{max-width:1920px;margin:0 auto}
+    header{display:flex;justify-content:space-between;align-items:center;padding:22px 48px;background:transparent}
+    .brand{display:flex;align-items:center;gap:16px}
+    img.logo{height:64px}
+    .container{max-width:600px;margin:100px auto;padding:40px;background:var(--card);border-radius:14px;box-shadow:0 14px 46px rgba(2,6,23,0.06);text-align:center}
+    
+    /* Primary CTA (Red) - PC CTA */
+    .btn-primary{background:var(--logo-red-dark);color:#fff;padding:12px 24px;border-radius:12px;font-weight:800;text-decoration:none;display:inline-block;transition:background 0.2s ease}
+    .btn-primary:hover{background:#8c1f20}
+
+    /* Secondary CTA (Purple) - Mobile CTA */
+    .btn-secondary-ty{background:var(--purple);color:#fff;padding:12px 24px;border-radius:12px;font-weight:800;text-decoration:none;display:inline-block;transition:background 0.2s ease} 
+    .btn-secondary-ty:hover{background:var(--purple-dark)}
+
+    /* Ghost/Text Button - Back to Home */
+    .btn-ghost-ty{color:var(--muted);padding:12px 24px;border-radius:12px;font-weight:600;text-decoration:none;display:inline-block;transition:color 0.2s ease; border: 1px solid transparent;}
+    .btn-ghost-ty:hover{color:var(--black);border-color: rgba(11,11,11,0.06);}
+
+    .icon{color:var(--green);font-size:60px;margin-bottom:15px;display:block}
+    
+    /* Wrapper for all CTAs */
+    .cta-group { display: flex; flex-direction: column; align-items: center; gap: 15px; margin-top: 25px; }
+
+    @media (max-width:760px){
+        header{padding:12px}
+        .container{margin:50px 18px;padding:20px}
+    }
+  </style>
+</head>
+<body>
+    <div class="site">
+        <header>
+            <div class="brand">
+                <img class="logo" src="https://cagboot.com/upload/CAG%20PRO%20cloud%20R.png" alt="CAG Billing logo">
+                <div style="font-weight:800;font-size:18px;color:var(--black)">CAG Billing Pro</div>
+            </div>
+        </header>
+
+        <div class="container">
+            <span class="icon">✅</span>
+            <h1 style="font-size:32px;margin-top:0;">Cảm ơn bạn đã đăng ký!</h1>
+            <p style="font-size:18px;color:var(--muted);line-height:1.5;">
+                Đội ngũ kỹ thuật của CAG Billing đã nhận được thông tin của bạn.
+                Chúng tôi sẽ **liên hệ qua số điện thoại/Zalo** bạn cung cấp trong vòng 1-2 giờ làm việc để tiến hành cài đặt miễn phí.
+            </p>
+            
+            <div class="cta-group">
+                <p style="font-size:16px;margin:0;">
+                    Trong lúc chờ đợi, bạn có thể xem thêm:
+                </p>
+                
+                <a id="cta-pc" href="https://cagpro.cloud/download/download.php" class="btn-primary" target="_blank" style="display:none;">
+                    ⬇️ Tải Phần Mềm Miễn Phí
+                </a>
+                
+                <a id="cta-mobile" href="https://www.facebook.com/cagboot.cyberallgame.vn/" class="btn-secondary-ty" target="_blank" style="display:none;">
+                    👍 Theo Dõi Fanpage Chính Thức
+                </a>
+                
+                <a href="/" class="btn-ghost-ty">
+                    &larr; Trở về Trang Chủ
+                </a>
+            </div>
+
+            <p style="font-size:14px;color:var(--muted);margin-top:20px;">
+                Hotline hỗ trợ: <a href="tel:0909107789">0909 107 789</a>
+            </p>
+        </div>
+    </div>
+    
+    <script>
+        // Chức năng ẩn/hiện CTA dựa trên kích thước màn hình
+        function updateCtaDisplay() {
+            const ctaPc = document.getElementById('cta-pc');
+            const ctaMobile = document.getElementById('cta-mobile');
+            
+            // Nếu kích thước màn hình lớn hơn 760px (Desktop/PC)
+            if (window.innerWidth > 760) {
+                if(ctaPc) ctaPc.style.display = 'inline-block';
+                if(ctaMobile) ctaMobile.style.display = 'none';
+            } 
+            // Nếu kích thước màn hình nhỏ hơn hoặc bằng 760px (Mobile)
+            else {
+                if(ctaPc) ctaPc.style.display = 'none';
+                if(ctaMobile) ctaMobile.style.display = 'inline-block';
+            }
+        }
+
+        // Chạy lần đầu và lắng nghe sự kiện thay đổi kích thước
+        updateCtaDisplay();
+        window.addEventListener('resize', updateCtaDisplay);
+    </script>
+</body>
+</html>

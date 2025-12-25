@@ -1,0 +1,866 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <title data-translate="page.title">Bảng Tính Lợi Nhuận & Đầu Tư Phòng Game - An Phát</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="description" content="Tính toán dự toán đầu tư và điểm hòa vốn cho phòng game với các giải pháp CNTT chuyên biệt từ An Phát. Tối ưu hóa cho SEO và Google." data-translate="page.description">
+  <meta name="keywords" content="chi phí phòng game, iCafe, phòng net, tính toán lợi nhuận, bảng giá máy tính, gaming cafe, An Phat IT, CAG Pro, kinh doanh phòng game, tính hòa vốn, Bảng Tính Lợi Nhuận & Đầu Tư Phòng Game - An Phát">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Bảng Tính Lợi Nhuận & Đầu Tư Phòng Game | CAG Pro">
+  <meta property="og:description" content="Dự toán chi phí và lợi nhuận cho phòng game một cách dễ dàng. Giải pháp chuyên nghiệp cho chủ iCafe tại Việt Nam.">
+  <meta property="og:image" content="https://cagpro.cloud/hinhanh/Bang-Gia-iCafe.png">
+  <meta property="og:image:alt" content="CAG Pro Logo">
+  <meta property="og:url" content="https://cagpro.cloud/calculator">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://cagpro.cloud/hinhanh/Bang-Gia-iCafe.png">
+  <meta name="twitter:image:alt" content="CAG Pro Logo">
+  <link rel="icon" type="image/png" href="https://cagpro.cloud/hinhanh/cag-apple-touch-icon.png" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: #121212;
+      color: #e0e0e0;
+      font-family: 'Montserrat', sans-serif;
+      overflow-x: hidden;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .container {
+      max-width: 900px;
+    }
+    .card {
+      background: #1e1e1e;
+      border: 1px solid #333;
+    }
+    .btn-cagpro {
+      transition: all 0.3s ease;
+      background: #1a73e8;
+      color: #fff;
+      padding: 0.75rem 1.5rem;
+      touch-action: manipulation;
+      border-radius: 0.5rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .btn-cagpro:hover {
+      background: #4285f4;
+    }
+    .btn-cagpro:disabled, .btn-disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    .table-auto {
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      -webkit-overflow-scrolling: touch;
+    }
+    .table-auto th, .table-auto td {
+      border-color: #333;
+      min-width: 120px;
+      white-space: nowrap;
+      padding: 0.75rem 1rem;
+    }
+    .error-message {
+      background: #b21f1f;
+      color: #f3f4f6;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      margin-top: 1rem;
+    }
+    .fixed-bar {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s ease-in-out;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      background: #1a73e8;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+      padding: 0.75rem 1rem;
+      border-radius: 9999px;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1000;
+      min-width: 120px;
+    }
+    .fixed-bar.fade-in {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .fixed-bar a {
+      color: #fff;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .fixed-bar i {
+      font-size: 1.5rem;
+      margin-bottom: 0.25rem;
+    }
+    @media (max-width: 640px) {
+      .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+      .text-4xl {
+        font-size: 1.875rem;
+        line-height: 2.25rem;
+      }
+      .text-2xl {
+        font-size: 1.5rem;
+        line-height: 2rem;
+      }
+      .table-auto th, .table-auto td {
+        font-size: 0.75rem;
+        padding: 0.5rem;
+      }
+      .btn-cagpro {
+        padding: 0.5rem 1rem;
+        font-size: 0.875rem;
+      }
+      input, select {
+        font-size: 0.875rem;
+        padding: 0.5rem;
+      }
+      .fixed-bar {
+        bottom: 1rem;
+        right: 1rem;
+        padding: 0.5rem 1rem;
+        flex-direction: row;
+        gap: 1rem;
+      }
+    }
+  </style>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white">
+  <nav class="bg-gray-800 py-3 shadow-md mb-8">
+    <div class="container mx-auto px-4">
+      <a href="/" class="btn-cagpro font-semibold text-sm">
+        <i class="bi bi-gear-fill mr-2"></i>Phần Mềm Quản Lý Phòng Game CAG
+      </a>
+    </div>
+  </nav>
+
+  <div class="container mx-auto px-4 py-8">
+    <div class="flex justify-between items-center mb-6">
+      <a href="/" class="btn-cagpro py-2 px-4 rounded-md font-semibold text-sm">
+        <i class="bi bi-arrow-left-circle mr-2"></i>Trở về trang chủ
+      </a>
+      <select id="languageSelect" class="bg-gray-800 text-white p-2 rounded border border-gray-600 focus:ring-blue-500 focus:border-blue-500 text-sm">
+        <option value="vi">Tiếng Việt</option>
+        <option value="en">English</option>
+      </select>
+    </div>
+
+    <div class="text-center mb-8">
+      <h1 class="text-4xl md:text-5xl font-bold text-white mb-2">
+        <i class="bi bi-calculator-fill text-blue-500"></i> <span data-translate="header.title">Bảng Tính Lợi Nhuận & Đầu Tư Phòng Game</span>
+      </h1>
+      <p class="text-lg text-gray-400" data-translate="header.subtitle">
+        Thông tin tham khảo – Liên hệ <strong class="text-blue-500">+84 909 107 789</strong> để được tư vấn miễn phí.
+      </p>
+    </div>
+
+    <div class="card rounded-lg p-6 mb-8 shadow-lg">
+      <div class="section-title text-2xl font-semibold text-blue-500 mb-4">
+        <i class="bi bi-info-circle mr-2"></i> <span data-translate="spec.title">Bảng Mô Tả Cấu Hình Tham Khảo</span>
+      </div>
+      <table class="table-auto w-full text-gray-300">
+        <thead class="bg-gray-800">
+          <tr>
+            <th class="px-4 py-2" data-translate="spec.table.component">Thành phần</th>
+            <th class="px-4 py-2" data-translate="spec.table.budget">Giá Rẻ (~8M/PC)</th>
+            <th class="px-4 py-2" data-translate="spec.table.recommended">Khuyên Đầu Tư (~10M/PC)</th>
+            <th class="px-4 py-2" data-translate="spec.table.esport">eSport (~15M/PC)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="border px-4 py-2" data-translate="spec.table.mainboard">Bo mạch chủ</td><td class="border px-4 py-2">H510 - H610 DDR4</td><td class="border px-4 py-2">H610 - B760 Gaming DDR4</td><td class="border px-4 py-2">B760 - Z790 Gaming DDR4</td></tr>
+          <tr><td class="border px-4 py-2" data-translate="spec.table.cpu">CPU</td><td class="border px-4 py-2">Intel 10th - 11th - 12th Gen</td><td class="border px-4 py-2">Intel 12th - 13th Gen</td><td class="border px-4 py-2">Intel 12th - 14th Gen</td></tr>
+          <tr><td class="border px-4 py-2" data-translate="spec.table.ram">RAM</td><td class="border px-4 py-2">16GB DDR4</td><td class="border px-4 py-2">16GB DDR4</td><td class="border px-4 py-2">32GB DDR4</td></tr>
+          <tr><td class="border px-4 py-2" data-translate="spec.table.vga">Card đồ họa</td><td class="border px-4 py-2">NVIDIA 4GB</td><td class="border px-4 py-2">NVIDIA 6-8GB</td><td class="border px-4 py-2">NVIDIA 8-12GB</td></tr>
+          <tr><td class="border px-4 py-2" data-translate="spec.table.monitor">Màn hình</td><td class="border px-4 py-2">27-inch Gaming</td><td class="border px-4 py-2">27-inch Gaming</td><td class="border px-4 py-2">27-inch Gaming</td></tr>
+          <tr><td class="border px-4 py-2" data-translate="spec.table.peripherals">Phụ kiện</td><td class="border px-4 py-2">Headset, Optical Mechanical Keyboard, Mouse</td><td class="border px-4 py-2">Headset, Optical Mechanical Keyboard, Mouse</td><td class="border px-4 py-2">Headset, Optical Mechanical Keyboard, Mouse</td></tr>
+          <tr><td class="border px-4 py-2" data-translate="spec.table.purpose">Mục đích</td><td class="border px-4 py-2" data-translate="spec.table.budget.purpose">Cấu hình chơi game tiêu chuẩn</td><td class="border px-4 py-2" data-translate="spec.table.recommended.purpose">Cấu hình FPS Gaming Zone</td><td class="border px-4 py-2" data-translate="spec.table.esport.purpose">Dành cho Cyber Gaming VIP</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card rounded-lg p-6 mb-8 shadow-lg">
+      <div class="section-title text-2xl font-semibold text-blue-500 mb-4">
+        <i class="bi bi-pc-display-horizontal mr-2"></i> <span data-translate="workstations.title">Số Lượng Máy</span>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+        <div>
+          <label for="soMay" class="block text-sm font-medium text-gray-300" data-translate="workstations.label.machines">Số lượng máy:</label>
+          <input type="number" id="soMay" class="mt-1 block w-full p-2 bg-gray-800 border border-gray-600 rounded-md text-white focus:ring-blue-500 focus:border-blue-500" value="30" min="1">
+        </div>
+      </div>
+      <button id="confirmWorkstations" class="btn-cagpro" onclick="confirmWorkstations()" data-translate="workstations.button">Xác Nhận Số Máy</button>
+      <button class="btn-cagpro ml-4" onclick="location.reload()">Tính Lại</button>
+      <div id="ketQuaWorkstations" class="mt-4"></div>
+    </div>
+
+    <div class="card rounded-lg p-6 mb-8 shadow-lg">
+      <div class="section-title text-2xl font-semibold text-blue-500 mb-4">
+        <i class="bi bi-pc-display mr-2"></i> <span data-translate="investment.title">Dự Toán Đầu Tư Ban Đầu</span>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+        <div>
+          <label for="loaiDauTu" class="block text-sm font-medium text-gray-300" data-translate="investment.label.package">Chọn gói đầu tư:</label>
+          <select id="loaiDauTu" class="mt-1 block w-full p-2 bg-gray-800 border border-gray-600 rounded-md text-white focus:ring-blue-500 focus:border-blue-500" disabled>
+            <option value="1" data-translate="investment.package.budget">1. Giá rẻ (~8 triệu/máy)</option>
+            <option value="2" selected data-translate="investment.package.recommended">2. Khuyên đầu tư (~10 triệu/máy)</option>
+            <option value="3" data-translate="investment.package.premium">3. Cao cấp (~15 triệu/máy)</option>
+            <option value="0" data-translate="investment.package.esport">4. eSport (Liên hệ tư vấn)</option>
+          </select>
+        </div>
+      </div>
+      <button id="investmentButton" class="btn-cagpro btn-disabled" onclick="tinhChiPhiDauTu()" data-translate="investment.button" disabled>Tạo Dự Toán</button>
+      <div id="ketQuaDauTu" class="mt-4"></div>
+      <p class="text-sm text-gray-400 mt-2" data-translate="investment.note"><strong>Khuyến cáo:</strong> Nên dùng hệ thống mạng quang học để tăng trải nghiệm cho game thủ.</p>
+    </div>
+
+    <div class="card rounded-lg p-6 mb-8 shadow-lg">
+      <div class="section-title text-2xl font-semibold text-blue-500 mb-4">
+        <i class="bi bi-rulers mr-2"></i> <span data-translate="floorspace.title">Diện Tích Mặt Bằng Cần Chuẩn Bị</span>
+      </div>
+      <div id="dienTichResult" class="text-gray-300 mb-4" data-translate="floorspace.result">Vui lòng xác nhận số lượng máy và dự toán đầu tư để tính diện tích.</div>
+      <button id="floorSpaceButton" class="btn-cagpro btn-disabled" onclick="tinhDienTich()" data-translate="floorspace.button" disabled>Tính Toán Diện Tích</button>
+      <div id="ketQuaDienTich" class="mt-4"></div>
+    </div>
+
+    <div class="card rounded-lg p-6 mb-8 shadow-lg">
+      <div class="section-title text-2xl font-semibold text-blue-500 mb-4">
+        <i class="bi bi-tools mr-2"></i> <span data-translate="monthlyCost.title">Dự Toán Chi Phí Vận Hành Hàng Tháng</span>
+      </div>
+      <button id="monthlyCostButton" class="btn-cagpro btn-disabled" onclick="tinhChiPhiVanHanh()" data-translate="monthlyCost.button" disabled>Tính Chi Phí</button>
+      <div id="ketQuaChiPhiVanHanh" class="mt-4"></div>
+    </div>
+
+    <div class="card rounded-lg p-6 mb-8 shadow-lg">
+      <div class="section-title text-2xl font-semibold text-blue-500 mb-4">
+        <i class="bi bi-cash-coin mr-2"></i> <span data-translate="profit.title">Dự Toán Lợi Nhuận Hàng Tháng</span>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+        <div>
+          <label for="revenuePerHour" class="block text-sm font-medium text-gray-300" data-translate="profit.label.revenue">Doanh thu mỗi máy/giờ (VNĐ):</label>
+          <input type="number" id="revenuePerHour" class="mt-1 block w-full p-2 bg-gray-800 border border-gray-600 rounded-md text-white focus:ring-blue-500 focus:border-blue-500" value="10000" min="0">
+        </div>
+        <div>
+          <label for="hoursPerDay" class="block text-sm font-medium text-gray-300" data-translate="profit.label.hours">Giờ hoạt động mỗi ngày:</label>
+          <input type="number" id="hoursPerDay" class="mt-1 block w-full p-2 bg-gray-800 border border-gray-600 rounded-md text-white focus:ring-blue-500 focus:border-blue-500" value="12" min="0">
+        </div>
+        <div>
+          <label for="daysPerMonth" class="block text-sm font-medium text-gray-300" data-translate="profit.label.days">Số ngày hoạt động mỗi tháng:</label>
+          <input type="number" id="daysPerMonth" class="mt-1 block w-full p-2 bg-gray-800 border border-gray-600 rounded-md text-white focus:ring-blue-500 focus:border-blue-500" value="30" min="0">
+        </div>
+      </div>
+      <button id="profitButton" class="btn-cagpro btn-disabled" onclick="tinhLoiNhuan()" data-translate="profit.button" disabled>Tính Lợi Nhuận</button>
+      <div id="ketQuaLoiNhuan" class="mt-4"></div>
+    </div>
+
+    <div class="card rounded-lg p-6 mb-8 shadow-lg">
+      <div class="section-title text-2xl font-semibold text-blue-500 mb-4">
+        <i class="bi bi-graph-up mr-2"></i> <span data-translate="breakeven.title">Dự Toán Điểm Hòa Vốn</span>
+      </div>
+      <button id="breakevenButton" class="btn-cagpro btn-disabled" onclick="tinhDiemHoaVon()" data-translate="breakeven.button" disabled>Tạo Dự Toán</button>
+      <div id="ketQuaDiemHoaVon" class="mt-4"></div>
+      <p class="text-sm text-gray-400 mt-2" data-translate="breakeven.note"><strong>Lưu ý:</strong> Nhà đầu tư nên dành 30% lợi nhuận hàng tháng để tái đầu tư và nâng cấp thiết bị, đảm bảo phòng game luôn cạnh tranh và hiện đại.</p>
+    </div>
+
+    <div class="card rounded-lg p-8 mb-8 text-center shadow-lg">
+        <h3 class="text-2xl font-bold text-white mb-4">
+            <i class="bi bi-rocket-takeoff text-blue-500 mr-2"></i>Sẵn Sàng Biến Ý Tưởng Thành Hiện Thực?
+        </h3>
+        <p class="text-lg text-gray-300 mb-6">
+            Đừng để những con số chỉ là ước mơ. Hãy hành động ngay hôm nay để nhận được sự tư vấn chuyên sâu từ đội ngũ chuyên gia của chúng tôi. Chúng tôi sẽ giúp bạn xây dựng một phòng game chuyên nghiệp, hiệu quả, và tối ưu lợi nhuận.
+        </p>
+        <a href="tel:+84909107789" class="btn-cagpro text-lg">
+            <i class="bi bi-headset mr-2"></i>Liên Hệ Tư Vấn Ngay
+        </a>
+    </div>
+
+    <div class="mt-8 p-6 bg-gray-800 border border-gray-700 rounded-lg shadow-inner">
+      <h4 class="text-xl font-bold text-blue-500 mb-2" data-translate="company.title">🛠️ ĐƠN VỊ THI CÔNG VI TÍNH AN PHÁT & CYBER ALL GAMES VIỆT NAM</h4>
+      <h5 class="text-lg text-gray-300 mb-3" data-translate="company.subtitle">Với hơn 10 năm kinh nghiệm, An Phát chia sẻ lời khuyên cho chủ đầu tư:</h5>
+      <ul class="list-disc list-inside text-gray-300">
+        <li data-translate="company.tips.1">✅ Chọn linh kiện bền, chính hãng, tránh hàng “trôi nổi” gây gián đoạn kinh doanh.</li>
+        <li data-translate="company.tips.2">✅ Lắp đặt mạng nội bộ và server ổn định để vận hành bootrom trơn tru.</li>
+        <li data-translate="company.tips.3">✅ Đầu tư vào không gian và nội thất để nâng cao trải nghiệm người dùng.</li>
+        <li data-translate="company.tips.4">✅ Sử dụng phần mềm bản quyền CAG Pro + Pro Cloud Save để quản lý chuyên nghiệp.</li>
+        <li data-translate="company.tips.5">✅ CAG PRO TEAM hỗ trợ bằng năng lực phát triển phần mềm, không chỉ thương mại!</li>
+      </ul>
+      <p class="mt-3 text-gray-300" data-translate="company.commitment">An Phát cam kết đồng hành lâu dài, mang lại giải pháp tối ưu, hiệu quả và an toàn!</p>
+    </div>
+
+    <div id="lienHeFixed" class="fixed-bar">
+      <a href="tel:+84909107789" class="flex flex-col items-center text-white" aria-label="Call">
+        <i class="bi bi-telephone-fill"></i>
+        <span class="text-xs mt-1 font-semibold">Gọi</span>
+      </a>
+      <a href="https://zalo.me/0909107789" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center text-white" aria-label="Message via Zalo">
+        <i class="bi bi-chat-dots-fill"></i>
+        <span class="text-xs mt-1 font-semibold">Zalo</span>
+      </a>
+    </div>
+  </div>
+
+  <footer class="w-full text-center text-sm text-gray-400 py-4 mt-10 mx-auto">
+    From Vision to Victory – Professional Gaming Cafe Setup Solutions -
+    <a href="https://vitinhanphat.com.vn" target="_blank" class="text-blue-500 hover:underline">
+      An Phát IT
+    </a>
+  </footer>
+
+  <script>
+    let soMay = 30;
+    let tongChiPhiDauTu = 0;
+    let loiNhuanHangThang = 0;
+    let chiPhiVanHanhHangThang = 0;
+    let workstationsConfirmed = false;
+    let investmentCalculated = false;
+    let floorSpaceConfirmed = false;
+    let monthlyCostCalculated = false;
+    let profitCalculated = false;
+
+    const translations = {
+      vi: {
+        "page.title": "Bảng Tính Lợi Nhuận & Đầu Tư Phòng Game - An Phát",
+        "page.description": "Tính toán dự toán đầu tư và điểm hòa vốn cho phòng game với các giải pháp CNTT chuyên biệt từ An Phát.",
+        "header.title": "Bảng Tính Lợi Nhuận & Đầu Tư Phòng Game",
+        "header.subtitle": "Thông tin tham khảo – Liên hệ <strong class='text-blue-500'>0909 107 789 Mr Lương Vinh</strong> để được tư vấn miễn phí.",
+        "spec.title": "Bảng Mô Tả Cấu Hình Tham Khảo",
+        "spec.table.component": "Thành phần",
+        "spec.table.budget": "Giá Rẻ (~8 triệu/PC)",
+        "spec.table.recommended": "Khuyên Đầu Tư (~10 triệu/PC)",
+        "spec.table.esport": "eSport (~15 triệu/PC)",
+        "spec.table.mainboard": "Bo mạch chủ",
+        "spec.table.cpu": "CPU",
+        "spec.table.ram": "RAM",
+        "spec.table.vga": "Card đồ họa",
+        "spec.table.monitor": "Màn hình",
+        "spec.table.peripherals": "Phụ kiện",
+        "spec.table.purpose": "Cấu hình chơi game tiêu chuẩn",
+        "spec.table.recommended.purpose": "Cấu hình FPS Gaming Zone",
+        "spec.table.esport.purpose": "Dành cho Cyber Gaming VIP",
+        "workstations.title": "Số Lượng Máy",
+        "workstations.label.machines": "Số lượng máy:",
+        "workstations.button": "Xác Nhận Số Máy",
+        "workstations.confirm": "Đã xác nhận số lượng máy: <span id='confirmedSoMay'>{soMay}</span> máy.",
+        "workstations.error": "Số lượng máy phải lớn hơn 0! Vui lòng nhập lại.",
+        "investment.title": "Dự Toán Đầu Tư Ban Đầu",
+        "investment.label.package": "Chọn gói đầu tư:",
+        "investment.package.budget": "1. Giá rẻ (~8 triệu/máy)",
+        "investment.package.recommended": "2. Khuyên đầu tư (~10 triệu/máy)",
+        "investment.package.premium": "3. Cao cấp (~15 triệu/máy)",
+        "investment.package.esport": "4. eSport (Liên hệ tư vấn)",
+        "investment.button": "Tạo Dự Toán",
+        "investment.note": "<strong>Khuyến cáo:</strong> Nên dùng hệ thống mạng quang học để tăng trải nghiệm cho game thủ.",
+        "investment.error": "Vui lòng xác nhận số lượng máy trước khi chọn gói đầu tư!",
+        "investment.invalid": "Vui lòng chọn gói đầu tư số 1, 2 hoặc 3. Gói eSport yêu cầu liên hệ tư vấn trực tiếp!",
+        "floorspace.title": "Diện Tích Mặt Bằng Cần Chuẩn Bị",
+        "floorspace.result": "Vui lòng xác nhận số lượng máy và dự toán đầu tư để tính diện tích.",
+        "floorspace.button": "Tính Toán Diện Tích",
+        "floorspace.confirm": "Diện tích mặt bằng cần thiết tối thiểu: <span id='dienTich'>{dienTich}</span> m² (1 PC x 2 m²)",
+        "monthlyCost.title": "Dự Toán Chi Phí Vận Hành Hàng Tháng",
+        "monthlyCost.button": "Tính Chi Phí",
+        "monthlyCost.error": "Vui lòng xác nhận diện tích mặt bằng trước khi tính chi phí vận hành!",
+        "monthlyCost.rent": "<i class='bi bi-building mr-2'></i>Tiền mặt bằng",
+        "monthlyCost.cashier": "<i class='bi bi-person mr-2'></i>Nhân viên thu ngân",
+        "monthlyCost.service": "<i class='bi bi-person mr-2'></i>Nhân viên phục vụ/order",
+        "monthlyCost.kitchen": "<i class='bi bi-egg-fried mr-2'></i>Nhân viên bếp",
+        "monthlyCost.security": "<i class='bi bi-shield-lock mr-2'></i>Bảo vệ/trông xe",
+        "monthlyCost.internet": "<i class='bi bi-wifi mr-2'></i>Tiền internet/mạng",
+        "monthlyCost.software": "<i class='bi bi-code-slash mr-2'></i>Phần mềm quản lý/IT Support",
+        "monthlyCost.other": "<i class='bi bi-tools mr-2'></i>Chi phí tiền điện, các khoản phát sinh...",
+        "monthlyCost.total": "<strong>Tổng chi phí vận hành</strong>",
+        "profit.title": "Dự Toán Lợi Nhuận Hàng Tháng",
+        "profit.label.revenue": "Doanh thu mỗi máy/giờ (VNĐ):",
+        "profit.label.hours": "Giờ hoạt động mỗi ngày:",
+        "profit.label.days": "Số ngày hoạt động mỗi tháng:",
+        "profit.button": "Tính Lợi Nhuận",
+        "profit.error": "Vui lòng xác nhận chi phí vận hành hàng tháng trước khi tính lợi nhuận!",
+        "profit.invalid": "Doanh thu mỗi máy/giờ, giờ hoạt động mỗi ngày và số ngày hoạt động phải lớn hơn 0!",
+        "profit.revenue": "<i class='bi bi-cash-coin mr-2'></i>Tổng doanh thu hàng tháng",
+        "profit.cost": "<i class='bi bi-tools mr-2'></i>Chi phí vận hành hàng tháng",
+        "profit.tax": "<i class='bi bi-bank mr-2'></i>Thuế thu nhập doanh nghiệp (22%)",
+        "profit.net": "<strong>Lợi nhuận ròng hàng tháng</strong>",
+        "breakeven.title": "Dự Toán Điểm Hòa Vốn",
+        "breakeven.button": "Tạo Dự Toán",
+        "breakeven.note": "<strong>Lưu ý:</strong> Nhà đầu tư nên dành 30% lợi nhuận hàng tháng để tái đầu tư và nâng cấp thiết bị, đảm bảo phòng game luôn cạnh tranh và hiện đại.",
+        "breakeven.error": "Vui lòng xác nhận lợi nhuận hàng tháng trước khi tính điểm hòa vốn!",
+        "company.title": "🛠️ ĐƠN VỊ THI CÔNG VI TÍNH AN PHÁT & CYBER ALL GAMES VIỆT NAM",
+        "company.subtitle": "Với hơn 10 năm kinh nghiệm, An Phát chia sẻ lời khuyên cho chủ đầu tư:",
+        "company.tips.1": "✅ Chọn linh kiện bền, chính hãng, tránh hàng “trôi nổi” gây gián đoạn kinh doanh.",
+        "company.tips.2": "✅ Lắp đặt mạng nội bộ và server ổn định để vận hành bootrom trơn tru.",
+        "company.tips.3": "✅ Đầu tư vào không gian và nội thất để nâng cao trải nghiệm người dùng.",
+        "company.tips.4": "✅ Sử dụng phần mềm bản quyền CAG Pro + Pro Cloud Save để quản lý chuyên nghiệp.",
+        "company.tips.5": "✅ CAG PRO TEAM hỗ trợ bằng năng lực phát triển phần mềm, không chỉ thương mại!",
+        "company.commitment": "An Phát cam kết đồng hành lâu dài, mang lại giải pháp tối ưu, hiệu quả và an toàn!"
+      },
+      en: {
+        "page.title": "Gaming Cafe Investment & Revenue Calculator - An Phát",
+        "page.description": "Estimate initial investment and break-even point for gaming cafes with specialized IT solutions from An Phát.",
+        "header.title": "Gaming Cafe Investment Calculator",
+        "header.subtitle": "For reference only – Contact <strong class='text-blue-500'>+84 909 107 789</strong> for free consultation.",
+        "spec.title": "Reference Hardware Specifications",
+        "spec.table.component": "Component",
+        "spec.table.budget": "Budget (~8M VND/PC)",
+        "spec.table.recommended": "Recommended (~10M VND/PC)",
+        "spec.table.esport": "eSport (~15M VND/PC)",
+        "spec.table.mainboard": "Motherboard",
+        "spec.table.cpu": "CPU",
+        "spec.table.ram": "RAM",
+        "spec.table.vga": "Graphics Card",
+        "spec.table.monitor": "Monitor",
+        "spec.table.peripherals": "Peripherals",
+        "spec.table.budget.purpose": "Standard Gaming Setup",
+        "spec.table.recommended.purpose": "FPS Gaming Zone Setup",
+        "spec.table.esport.purpose": "VIP Cyber Gaming Setup",
+        "workstations.title": "Number of Workstations",
+        "workstations.label.machines": "Number of Workstations:",
+        "workstations.button": "Confirm Workstations",
+        "workstations.confirm": "Confirmed number of workstations: <span id='confirmedSoMay'>{soMay}</span>.",
+        "workstations.error": "Number of workstations must be greater than 0! Please re-enter.",
+        "investment.title": "Initial Investment Estimate",
+        "investment.label.package": "Select Investment Package:",
+        "investment.package.budget": "1. Budget (~8M VND/PC)",
+        "investment.package.recommended": "2. Recommended (~10M VND/PC)",
+        "investment.package.premium": "3. Premium (~15M VND/PC)",
+        "investment.package.esport": "4. eSport (Contact for Consultation)",
+        "investment.button": "Generate Estimate",
+        "investment.note": "<strong>Recommendation:</strong> Use a fiber-optic network for optimal gaming performance.",
+        "investment.error": "Please confirm the number of workstations before selecting an investment package!",
+        "investment.invalid": "Please select package 1, 2, or 3. The eSport package requires direct consultation!",
+        "floorspace.title": "Required Floor Space",
+        "floorspace.result": "Please confirm the number of workstations and investment estimate to calculate floor space.",
+        "floorspace.button": "Confirm Floor Space",
+        "floorspace.confirm": "Minimum required floor space: <span id='dienTich'>{dienTich}</span> m² (1 PC x 2 m²)",
+        "monthlyCost.title": "Monthly Operational Cost Estimate",
+        "monthlyCost.button": "Calculate Costs",
+        "monthlyCost.error": "Please confirm the required floor space before calculating operational costs!",
+        "monthlyCost.rent": "<i class='bi bi-building mr-2'></i>Rent",
+        "monthlyCost.cashier": "<i class='bi bi-person mr-2'></i>Cashier Staff",
+        "monthlyCost.service": "<i class='bi bi-person mr-2'></i>Service/Order Staff",
+        "monthlyCost.kitchen": "<i class='bi bi-egg-fried mr-2'></i>Kitchen Staff",
+        "monthlyCost.security": "<i class='bi bi-shield-lock mr-2'></i>Security/Parking Staff",
+        "monthlyCost.internet": "<i class='bi bi-wifi mr-2'></i>Internet/Network",
+        "monthlyCost.software": "<i class='bi bi-code-slash mr-2'></i>Management Software/IT Support",
+        "monthlyCost.other": "<i class='bi bi-tools mr-2'></i>Electricity & Miscellaneous Costs",
+        "monthlyCost.total": "<strong>Total Operational Cost</strong>",
+        "profit.title": "Monthly Profit Estimate",
+        "profit.label.revenue": "Revenue per Workstation/Hour (VND):",
+        "profit.label.hours": "Operating Hours per Day:",
+        "profit.label.days": "Operating Days per Month:",
+        "profit.button": "Calculate Profit",
+        "profit.error": "Please confirm monthly operational costs before calculating profit!",
+        "profit.invalid": "Revenue per workstation/hour, hours per day, and days per month must be greater than 0!",
+        "profit.revenue": "<i class='bi bi-cash-coin mr-2'></i>Total Monthly Revenue",
+        "profit.cost": "<i class='bi bi-tools mr-2'></i>Monthly Operational Costs",
+        "profit.tax": "<i class='bi bi-bank mr-2'></i>Corporate Income Tax (22%)",
+        "profit.net": "<strong>Net Monthly Profit</strong>",
+        "breakeven.title": "Break-Even Point Estimate",
+        "breakeven.button": "Generate Estimate",
+        "breakeven.note": "<strong>Note:</strong> Investors should reserve 30% of monthly profits for reinvestment and equipment upgrades to keep the gaming cafe competitive and modern.",
+        "breakeven.error": "Please confirm monthly profit before calculating the break-even point!",
+        "company.title": "🛠️ AN PHÁT IT & CYBER ALL GAMES VIETNAM",
+        "company.subtitle": "With over 10 years of experience, An Phát offers advice for investors:",
+        "company.tips.1": "✅ Choose durable, authentic components to avoid unreliable hardware that disrupts operations.",
+        "company.tips.2": "✅ Deploy a stable internal network and server for seamless bootrom performance.",
+        "company.tips.3": "✅ Invest in premium interiors and furniture to enhance the gaming experience.",
+        "company.tips.4": "✅ Use licensed CAG Pro + Pro Cloud Save software for professional management.",
+        "company.tips.5": "✅ CAG PRO Team provides expert software development support, beyond just commercial services.",
+        "company.commitment": "An Phát is committed to long-term partnerships, delivering optimized, efficient, and secure solutions."
+      }
+    };
+
+    function updateLanguage(lang) {
+      document.querySelectorAll('[data-translate]').forEach(element => {
+        const key = element.getAttribute('data-translate');
+        let text = translations[lang][key] || element.innerHTML;
+        text = text.replace('{soMay}', soMay).replace('{dienTich}', soMay * 2);
+        if (element.tagName === 'OPTION' || element.tagName === 'P' || element.tagName === 'LI' || element.tagName === 'DIV' || element.tagName === 'A') {
+          element.innerHTML = text;
+        } else {
+          element.textContent = text;
+        }
+      });
+      document.documentElement.lang = lang;
+      document.querySelector('title').textContent = translations[lang]['page.title'];
+      document.querySelector('meta[name="description"]').setAttribute('content', translations[lang]['page.description']);
+      updateSectionStates();
+    }
+
+    function updateSectionStates() {
+      const lang = document.getElementById('languageSelect').value;
+      const loaiDauTuSelect = document.getElementById('loaiDauTu');
+      const investmentButton = document.getElementById('investmentButton');
+      const floorSpaceButton = document.getElementById('floorSpaceButton');
+      const monthlyCostButton = document.getElementById('monthlyCostButton');
+      const profitButton = document.getElementById('profitButton');
+      const breakevenButton = document.getElementById('breakevenButton');
+
+      if (workstationsConfirmed) {
+        loaiDauTuSelect.removeAttribute('disabled');
+        investmentButton.classList.remove('btn-disabled');
+        investmentButton.removeAttribute('disabled');
+        document.getElementById('ketQuaWorkstations').innerHTML = `<div class="p-4 bg-green-900 rounded-lg text-green-300">` + translations[lang]['workstations.confirm'].replace('{soMay}', soMay) + `</div>`;
+      } else {
+        loaiDauTuSelect.disabled = true;
+        investmentButton.classList.add('btn-disabled');
+        investmentButton.disabled = true;
+      }
+
+      if (investmentCalculated) {
+        floorSpaceButton.classList.remove('btn-disabled');
+        floorSpaceButton.removeAttribute('disabled');
+        document.getElementById('dienTichResult').innerHTML = `<div class="p-4 bg-green-900 rounded-lg text-green-300">` + translations[lang]['floorspace.confirm'].replace('{dienTich}', soMay * 2) + `</div>`;
+      } else {
+        floorSpaceButton.classList.add('btn-disabled');
+        floorSpaceButton.disabled = true;
+      }
+
+      if (floorSpaceConfirmed) {
+        monthlyCostButton.classList.remove('btn-disabled');
+        monthlyCostButton.removeAttribute('disabled');
+      } else {
+        monthlyCostButton.classList.add('btn-disabled');
+        monthlyCostButton.disabled = true;
+      }
+
+      if (monthlyCostCalculated) {
+        profitButton.classList.remove('btn-disabled');
+        profitButton.removeAttribute('disabled');
+      } else {
+        profitButton.classList.add('btn-disabled');
+        profitButton.disabled = true;
+      }
+
+      if (profitCalculated) {
+        breakevenButton.classList.remove('btn-disabled');
+        breakevenButton.removeAttribute('disabled');
+      } else {
+        breakevenButton.classList.add('btn-disabled');
+        breakevenButton.disabled = true;
+      }
+    }
+
+    function tinhChiPhiDauTu() {
+      const lang = document.getElementById('languageSelect').value;
+      if (!workstationsConfirmed) {
+        document.getElementById('ketQuaDauTu').innerHTML = `<div class="error-message">${translations[lang]['investment.error']}</div>`;
+        return;
+      }
+
+      const may = soMay;
+      const loai = parseInt(document.getElementById('loaiDauTu').value);
+
+      if (loai === 0) {
+        document.getElementById('ketQuaDauTu').innerHTML = `<div class="error-message">${translations[lang]['investment.invalid']}</div>`;
+        return;
+      }
+
+      const pcCostPerUnit = { 1: 8000000, 2: 10000000, 3: 15000000 };
+      const chiPhiPC = may * pcCostPerUnit[loai];
+      const serverBootrom = may * 555000;
+      const mayTinhTien = 6590000;
+      const banGheGaming = may * 1450000;
+      const trangTri = may * 125000;
+      const thuTucPhapLy = 5000000;
+      const dienThietBi = may * 120000;
+      const chiPhiKhac = may * 90000;
+      const heThongMangNoiBo = may * 250000;
+      let routerCanBangTai = 0;
+      let cameraGiamSat = 0;
+
+      if (may < 30) {
+        routerCanBangTai = 2500000;
+        cameraGiamSat = 5500000;
+      } else if (may < 50) {
+        routerCanBangTai = 3500000;
+        cameraGiamSat = 5500000;
+      } else {
+        routerCanBangTai = 4000000;
+        cameraGiamSat = 4000000;
+      }
+
+      tongChiPhiDauTu = chiPhiPC + serverBootrom + mayTinhTien + banGheGaming + trangTri + thuTucPhapLy + dienThietBi + chiPhiKhac + heThongMangNoiBo + routerCanBangTai + cameraGiamSat;
+      investmentCalculated = true;
+      document.getElementById('investmentButton').disabled = true;
+
+      const costPerPC = loai === 1 ? 8 : loai === 2 ? 10 : 15;
+      const labels = {
+        vi: {
+          pc: `<i class='bi bi-pc-display mr-2'></i>${costPerPC} triệu/máy x ${may} máy`,
+          server: "<i class='bi bi-server mr-2'></i>Máy chủ \\ Server Bootrom",
+          cashier: "<i class='bi bi-cash-stack mr-2'></i>Máy Tính Tiền (Thu Ngân)",
+          furniture: "<i class='bi bi-chair mr-2'></i>Bàn Mẫu Tùy Chọn \\ Ghế Gaming chân quỳ",
+          decor: "<i class='bi bi-brush mr-2'></i>Gói Trang trí cơ bản",
+          legal: "<i class='bi bi-file-earmark-text mr-2'></i>Thủ tục pháp lý (legal procedures)",
+          power: "<i class='bi bi-lightning-charge mr-2'></i>Chi phí Thi Công điện/thiết bị",
+          network: "<i class='bi bi-hdd-network mr-2'></i>Hệ thống mạng nội bộ ( Khuyên Dùng Quang Học )",
+          router: "<i class='bi bi-router mr-2'></i>Router cân bằng tải Mạng, định tuyến games",
+          camera: "<i class='bi bi-camera mr-2'></i>Camera giám sát an ninh, bảo vệ 24/24",
+          other: "<i class='bi bi-tools mr-2'></i>Chi phí các khoản phát sinh (nếu có)",
+          total: "<strong>Tổng chi phí đầu tư (Tạm tính)</strong>"
+        },
+        en: {
+          pc: `<i class='bi bi-pc-display mr-2'></i>${costPerPC}M VND/PC x ${may} PCs`,
+          server: "<i class='bi bi-server mr-2'></i>Bootrom Server",
+          cashier: "<i class='bi bi-cash-stack mr-2'></i>Cashier PC",
+          furniture: "<i class='bi bi-chair mr-2'></i>Gaming Furniture",
+          decor: "<i class='bi bi-brush mr-2'></i>Basic Decoration Package",
+          legal: "<i class='bi bi-file-earmark-text mr-2'></i>Legal Procedures",
+          power: "<i class='bi bi-lightning-charge mr-2'></i>Electrical & Equipment Installation",
+          network: "<i class='bi bi-hdd-network mr-2'></i>Fiber-Optic Internal Network (Recommended)",
+          router: "<i class='bi bi-router mr-2'></i>Load-Balancing Router",
+          camera: "<i class='bi bi-camera mr-2'></i>24/7 Security Cameras",
+          other: "<i class='bi bi-tools mr-2'></i>Miscellaneous Costs",
+          total: "<strong>Total Investment Cost (Estimate)</strong>"
+        }
+      };
+
+      document.getElementById("ketQuaDauTu").innerHTML = `
+        <table class="table-auto w-full text-gray-300">
+          <thead class="bg-gray-800">
+            <tr><th class="px-4 py-2">${lang === 'vi' ? 'Hạng mục' : 'Category'}</th><th class="px-4 py-2">${lang === 'vi' ? 'Số tiền (VNĐ)' : 'Amount (VND)'}</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="border px-4 py-2">${labels[lang].pc}</td><td class="text-right border px-4 py-2">${chiPhiPC.toLocaleString()}</td></tr>
+            <tr><td class="border px-4 py-2">${labels[lang].server}</td><td class="text-right border px-4 py-2">${serverBootrom.toLocaleString()}</td></tr>
+            <tr><td class="border px-4 py-2">${labels[lang].cashier}</td><td class="text-right border px-4 py-2">${mayTinhTien.toLocaleString()}</td></tr>
+            <tr><td class="border px-4 py-2">${labels[lang].furniture}</td><td class="text-right border px-4 py-2">${banGheGaming.toLocaleString()}</td></tr>
+            <tr><td class="border px-4 py-2">${labels[lang].decor}</td><td class="text-right border px-4 py-2">${trangTri.toLocaleString()}</td></tr>
+            <tr><td class="border px-4 py-2">${labels[lang].legal}</td><td class="text-right border px-4 py-2">${thuTucPhapLy.toLocaleString()}</td></tr>
+            <tr><td class="border px-4 py-2">${labels[lang].power}</td><td class="text-right border px-4 py-2">${dienThietBi.toLocaleString()}</td></tr>
+            <tr><td class="border px-4 py-2">${labels[lang].network}</td><td class="text-right border px-4 py-2">${heThongMangNoiBo.toLocaleString()}</td></tr>
+            <tr><td class="border px-4 py-2">${labels[lang].router}</td><td class="text-right border px-4 py-2">${routerCanBangTai.toLocaleString()}</td></tr>
+            <tr><td class="border px-4 py-2">${labels[lang].camera}</td><td class="text-right border px-4 py-2">${cameraGiamSat.toLocaleString()}</td></tr>
+            <tr><td class="border px-4 py-2">${labels[lang].other}</td><td class="text-right border px-4 py-2">${chiPhiKhac.toLocaleString()}</td></tr>
+            <tr class="bg-gray-700"><td class="border px-4 py-2">${labels[lang].total}</td><td class="text-right border px-4 py-2"><strong>${tongChiPhiDauTu.toLocaleString()}</strong></td></tr>
+          </tbody>
+        </table>
+      `;
+      updateSectionStates();
+    }
+
+    function tinhDienTich() {
+      const lang = document.getElementById('languageSelect').value;
+      if (!investmentCalculated) {
+        document.getElementById('ketQuaDauTu').innerHTML = `<div class="error-message">${translations[lang]['floorspace.error']}</div>`;
+        return;
+      }
+
+      floorSpaceConfirmed = true;
+      document.getElementById('floorSpaceButton').disabled = true;
+      updateSectionStates();
+    }
+
+    function tinhChiPhiVanHanh() {
+      const lang = document.getElementById('languageSelect').value;
+      if (!floorSpaceConfirmed) {
+        document.getElementById('ketQuaChiPhiVanHanh').innerHTML = `<div class="error-message">${translations[lang]['monthlyCost.error']}</div>`;
+        return;
+      }
+
+      const rentCost = soMay * 250000;
+      const cashierCost = 22000 * 15 * 30;
+      const serviceCost = 25000 * 15 * 30;
+      const kitchenCost = 30000 * 12 * 30;
+      const securityCost = 20000 * 15 * 30;
+      const internetCost = 600000 * Math.ceil(soMay / 20);
+      const softwareCost = soMay * 15000;
+      const otherCost = soMay * 265000;
+      chiPhiVanHanhHangThang = rentCost + cashierCost + serviceCost + kitchenCost + securityCost + internetCost + softwareCost + otherCost;
+
+      monthlyCostCalculated = true;
+      document.getElementById('monthlyCostButton').disabled = true;
+
+      const labels = {
+        vi: {
+          rent: translations.vi['monthlyCost.rent'],
+          cashier: translations.vi['monthlyCost.cashier'],
+          service: translations.vi['monthlyCost.service'],
+          kitchen: translations.vi['monthlyCost.kitchen'],
+          security: translations.vi['monthlyCost.security'],
+          internet: translations.vi['monthlyCost.internet'],
+          software: translations.vi['monthlyCost.software'],
+          other: translations.vi['monthlyCost.other'],
+          total: translations.vi['monthlyCost.total']
+        },
+        en: {
+          rent: translations.en['monthlyCost.rent'],
+          cashier: translations.en['monthlyCost.cashier'],
+          service: translations.en['monthlyCost.service'],
+          kitchen: translations.en['monthlyCost.kitchen'],
+          security: translations.en['monthlyCost.security'],
+          internet: translations.en['monthlyCost.internet'],
+          software: translations.en['monthlyCost.software'],
+          other: translations.en['monthlyCost.other'],
+          total: translations.en['monthlyCost.total']
+        }
+      };
+
+      document.getElementById("ketQuaChiPhiVanHanh").innerHTML = `
+        <table class="table-auto w-full text-gray-300">
+          <thead class="bg-gray-800">
+            <tr><th class="px-4 py-2">${lang === 'vi' ? 'Hạng mục' : 'Category'}</th><th class="px-4 py-2">${lang === 'vi' ? 'Số tiền (VNĐ)' : 'Amount (VND)'}</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="border px-4 py-2">${labels[lang].rent}</td><td class="text-right border px-4 py-2">${rentCost.toLocaleString()}</td></tr>
+            <tr><td class="border px-4 py-2">${labels[lang].cashier}</td><td class="text-right border px-4 py-2">${cashierCost.toLocaleString()}</td></tr>
+            <tr><td class="border px-4 py-2">${labels[lang].service}</td><td class="text-right border px-4 py-2">${serviceCost.toLocaleString()}</td></tr>
+            <tr><td class="border px-4 py-2">${labels[lang].kitchen}</td><td class="text-right border px-4 py-2">${kitchenCost.toLocaleString()}</td></tr>
+            <tr><td class="border px-4 py-2">${labels[lang].security}</td><td class="text-right border px-4 py-2">${securityCost.toLocaleString()}</td></tr>
+            <tr><td class="border px-4 py-2">${labels[lang].internet}</td><td class="text-right border px-4 py-2">${internetCost.toLocaleString()}</td></tr>
+            <tr><td class="border px-4 py-2">${labels[lang].software}</td><td class="text-right border px-4 py-2">${softwareCost.toLocaleString()}</td></tr>
+            <tr><td class="border px-4 py-2">${labels[lang].other}</td><td class="text-right border px-4 py-2">${otherCost.toLocaleString()}</td></tr>
+            <tr class="bg-gray-700"><td class="border px-4 py-2">${labels[lang].total}</td><td class="text-right border px-4 py-2"><strong>${chiPhiVanHanhHangThang.toLocaleString()}</strong></td></tr>
+          </tbody>
+        </table>
+      `;
+      updateSectionStates();
+    }
+
+    function tinhLoiNhuan() {
+      const lang = document.getElementById('languageSelect').value;
+      if (!monthlyCostCalculated) {
+        document.getElementById('ketQuaLoiNhuan').innerHTML = `<div class="error-message">${translations[lang]['profit.error']}</div>`;
+        return;
+      }
+
+      const revenuePerHour = parseInt(document.getElementById('revenuePerHour').value);
+      const hoursPerDay = parseInt(document.getElementById('hoursPerDay').value);
+      const daysPerMonth = parseInt(document.getElementById('daysPerMonth').value);
+
+      if (revenuePerHour <= 0 || hoursPerDay <= 0 || daysPerMonth <= 0 || isNaN(revenuePerHour) || isNaN(hoursPerDay) || isNaN(daysPerMonth)) {
+        document.getElementById('ketQuaLoiNhuan').innerHTML = `<div class="error-message">${translations[lang]['profit.invalid']}</div>`;
+        return;
+      }
+
+      const monthlyRevenue = soMay * revenuePerHour * hoursPerDay * daysPerMonth;
+      loiNhuanHangThang = monthlyRevenue - chiPhiVanHanhHangThang;
+      const corporateTax = loiNhuanHangThang > 0 ? loiNhuanHangThang * 0.22 : 0;
+      const netProfit = loiNhuanHangThang - corporateTax;
+
+      profitCalculated = true;
+      document.getElementById('profitButton').disabled = true;
+      document.getElementById('revenuePerHour').disabled = true;
+      document.getElementById('hoursPerDay').disabled = true;
+      document.getElementById('daysPerMonth').disabled = true;
+
+      const labels = {
+        vi: {
+          revenue: translations.vi['profit.revenue'],
+          cost: translations.vi['profit.cost'],
+          tax: translations.vi['profit.tax'],
+          net: translations.vi['profit.net']
+        },
+        en: {
+          revenue: translations.en['profit.revenue'],
+          cost: translations.en['profit.cost'],
+          tax: translations.en['profit.tax'],
+          net: translations.en['profit.net']
+        }
+      };
+
+      document.getElementById("ketQuaLoiNhuan").innerHTML = `
+        <table class="table-auto w-full text-gray-300">
+          <thead class="bg-gray-800">
+            <tr><th class="px-4 py-2">${lang === 'vi' ? 'Hạng mục' : 'Category'}</th><th class="px-4 py-2">${lang === 'vi' ? 'Số tiền (VNĐ)' : 'Amount (VND)'}</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="border px-4 py-2">${labels[lang].revenue}</td><td class="text-right border px-4 py-2">${monthlyRevenue.toLocaleString()}</td></tr>
+            <tr><td class="border px-4 py-2">${labels[lang].cost}</td><td class="text-right border px-4 py-2">${chiPhiVanHanhHangThang.toLocaleString()}</td></tr>
+            <tr><td class="border px-4 py-2">${labels[lang].tax}</td><td class="text-right border px-4 py-2">${corporateTax.toLocaleString()}</td></tr>
+            <tr class="bg-gray-700"><td class="border px-4 py-2">${labels[lang].net}</td><td class="text-right border px-4 py-2"><strong>${netProfit.toLocaleString()}</strong></td></tr>
+          </tbody>
+        </table>
+      `;
+      updateSectionStates();
+    }
+
+    function tinhDiemHoaVon() {
+      const lang = document.getElementById('languageSelect').value;
+      if (!profitCalculated) {
+        document.getElementById('ketQuaDiemHoaVon').innerHTML = `<div class="error-message">${translations[lang]['breakeven.error']}</div>`;
+        return;
+      }
+      
+      const netProfit = loiNhuanHangThang > 0 ? loiNhuanHangThang * 0.78 : 0;
+      const thoiGianHoaVon = tongChiPhiDauTu / netProfit;
+      const thoiGianHoaVonLamTron = netProfit > 0 ? Math.ceil(thoiGianHoaVon * 10) / 10 : 'N/A';
+      const loiNhuanSauTaiDauTu = netProfit > 0 ? netProfit * 0.7 : 0;
+      const thoiGianHoaVonSauTaiDauTu = loiNhuanSauTaiDauTu > 0 ? tongChiPhiDauTu / loiNhuanSauTaiDauTu : 'N/A';
+      const thoiGianHoaVonSauTaiDauTuLamTron = typeof thoiGianHoaVonSauTaiDauTu === 'number' ? Math.ceil(thoiGianHoaVonSauTaiDauTu * 10) / 10 : 'N/A';
+
+      const labels = {
+        vi: {
+          totalInvestment: "<i class='bi bi-wallet mr-2'></i>Tổng chi phí đầu tư",
+          monthlyProfit: "<i class='bi bi-cash mr-2'></i>Lợi nhuận ròng hàng tháng",
+          breakevenNoReinvest: "<i class='bi bi-clock mr-2'></i>Thời gian hòa vốn",
+          profitAfterReinvest: "<i class='bi bi-cash mr-2'></i>Lợi nhuận sau khi tái đầu tư 30%",
+          breakevenAfterReinvest: "<i class='bi bi-clock mr-2'></i>Thời gian hòa vốn sau tái đầu tư"
+        },
+        en: {
+          totalInvestment: "<i class='bi bi-wallet mr-2'></i>Total Investment",
+          monthlyProfit: "<i class='bi bi-cash mr-2'></i>Net Monthly Profit",
+          breakevenNoReinvest: "<i class='bi bi-clock mr-2'></i>Break-Even Time (No Reinvestment)",
+          profitAfterReinvest: "<i class='bi bi-cash mr-2'></i>Profit After 30% Reinvestment",
+          breakevenAfterReinvest: "<i class='bi bi-clock mr-2'></i>Break-Even Time After Reinvestment"
+        }
+      };
+
+      document.getElementById("ketQuaDiemHoaVon").innerHTML = `
+        <table class="table-auto w-full text-gray-300">
+          <thead class="bg-gray-800">
+            <tr><th class="px-4 py-2">${lang === 'vi' ? 'Hạng mục' : 'Category'}</th><th class="px-4 py-2">${lang === 'vi' ? 'Số tiền/Thời gian' : 'Amount/Time'}</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="border px-4 py-2">${labels[lang].totalInvestment}</td><td class="text-right border px-4 py-2">${tongChiPhiDauTu.toLocaleString()} VND</td></tr>
+            <tr><td class="border px-4 py-2">${labels[lang].monthlyProfit}</td><td class="text-right border px-4 py-2">${netProfit.toLocaleString()} VND</td></tr>
+            <tr><td class="border px-4 py-2">${labels[lang].breakevenNoReinvest}</td><td class="text-right border px-4 py-2">${thoiGianHoaVonLamTron} ${lang === 'vi' ? 'tháng' : 'months'}</td></tr>
+            <tr><td class="border px-4 py-2">${labels[lang].profitAfterReinvest}</td><td class="text-right border px-4 py-2">${loiNhuanSauTaiDauTu.toLocaleString()} VND</td></tr>
+            <tr><td class="border px-4 py-2">${labels[lang].breakevenAfterReinvest}</td><td class="text-right border px-4 py-2">${thoiGianHoaVonSauTaiDauTuLamTron} ${lang === 'vi' ? 'tháng' : 'months'}</td></tr>
+          </tbody>
+        </table>
+      `;
+      document.getElementById('breakevenButton').disabled = true;
+    }
+
+    function confirmWorkstations() {
+      soMay = parseInt(document.getElementById('soMay').value);
+      const lang = document.getElementById('languageSelect').value;
+      if (soMay <= 0 || isNaN(soMay)) {
+        document.getElementById('ketQuaWorkstations').innerHTML = `<div class="error-message">${translations[lang]['workstations.error']}</div>`;
+        return;
+      }
+      workstationsConfirmed = true;
+      document.getElementById('soMay').disabled = true;
+      document.getElementById('confirmWorkstations').disabled = true;
+      updateSectionStates();
+    }
+    
+    document.getElementById('languageSelect').addEventListener('change', (e) => {
+      updateLanguage(e.target.value);
+    });
+
+    updateLanguage('vi');
+    
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('lienHeFixed').classList.add('fade-in');
+      }, 10000);
+    });
+  </script>
+</body>
+</html>

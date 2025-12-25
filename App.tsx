@@ -5,9 +5,9 @@ import Hero from './components/Hero';
 import Mission from './components/Mission';
 import Features from './components/Features';
 import ImageGallery from './components/ImageGallery';
-import AIShowcase from './components/AIShowcase';
 import RegistrationForm from './components/RegistrationForm';
 import Pricing from './components/Pricing';
+import OEMBranding from './components/OEMBranding';
 import Footer from './components/Footer';
 
 // Localization Context
@@ -103,9 +103,9 @@ const App: React.FC = () => {
           <Mission />
           <Features />
           <ImageGallery />
-          <AIShowcase />
           <RegistrationForm />
           <Pricing />
+          <OEMBranding />
         </main>
         <Footer />
         

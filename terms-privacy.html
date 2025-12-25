@@ -1,0 +1,320 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Điều khoản & Chính sách bảo mật | CAG Pro Cloud</title>
+  <meta name="description" content="Điều khoản sử dụng và chính sách bảo mật của CAG Pro Cloud – nền tảng mở cho phòng máy, gamer và đối tác OEM.">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Định nghĩa Bảng Màu Mới: Tím/Hồng */
+    :root {
+        --primary-deep: #4A148C; /* Tím đậm chủ đạo (Deep Purple 900) */
+        --accent-light: #F48FB1; /* Hồng sáng làm điểm nhấn (Pink Light 200) */
+        --background-light: #FBF8F9; /* Nền trắng hơi ngả */
+        --text-color: #333;
+    }
+
+    /* Reset và Căn bản */
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--background-light); 
+      margin: 0;
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+
+    /* Header - Tông Tím đậm */
+    header {
+      background: var(--primary-deep); 
+      color: white;
+      padding: 30px 20px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.2rem;
+      letter-spacing: 1px;
+      font-weight: 700;
+    }
+    header p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+      margin-top: 5px;
+    }
+
+    /* Container & Card */
+    .container {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    .card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+      padding: 40px;
+    }
+
+    /* Tiêu đề mục */
+    h2 {
+      border-left: 5px solid var(--accent-light); /* Màu Hồng sáng làm điểm nhấn */
+      padding-left: 15px;
+      color: var(--primary-deep);
+      font-size: 1.5rem;
+      margin-top: 2em;
+      margin-bottom: 1em;
+      font-weight: 700;
+    }
+    h3 {
+        color: var(--primary-deep);
+        font-size: 1.2rem;
+        margin-top: 1.5em;
+        font-weight: 600;
+    }
+    p, ul {
+        margin-bottom: 1em;
+        color: #555;
+    }
+    ul {
+        padding-left: 20px;
+        list-style-type: square;
+    }
+
+    /* Chia cột song ngữ */
+    .lang-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+    .lang-section > div {
+        padding-right: 20px;
+        border-right: 1px solid #eee;
+    }
+    .lang-section > div:last-child {
+        border-right: none;
+        padding-right: 0;
+        padding-left: 20px;
+    }
+    
+    /* Media Queries (Giữ nguyên) */
+    @media (max-width: 992px) {
+      .lang-section {
+        gap: 20px;
+      }
+    }
+    @media (max-width: 768px) {
+      .lang-section {
+        grid-template-columns: 1fr;
+      }
+      .lang-section > div {
+        border-right: none;
+        padding: 0;
+      }
+      .lang-section > div:last-child {
+        padding: 0;
+      }
+      h1 {
+          font-size: 1.8rem;
+      }
+      h2 {
+          font-size: 1.3rem;
+      }
+    }
+
+    /* Footer và Nút */
+    footer {
+      text-align: center;
+      margin: 40px 0;
+    }
+    .home-btn {
+      background: var(--accent-light); /* Nền Hồng sáng */
+      color: var(--primary-deep); /* Chữ Tím đậm */
+      padding: 14px 30px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 700;
+      transition: all 0.3s;
+      border: 2px solid var(--accent-light);
+    }
+    .home-btn:hover {
+      background: var(--primary-deep);
+      color: white;
+      border: 2px solid var(--primary-deep);
+    }
+
+    /* Phần ghi chú mới */
+    .note-section {
+        background: #f7e8ef; /* Nền nhẹ nhàng hơn */
+        border-left: 4px solid var(--accent-light);
+        padding: 20px;
+        border-radius: 6px;
+        margin-top: 40px;
+    }
+    .note-section h4 {
+        color: var(--primary-deep);
+        margin-top: 0;
+        font-size: 1.1rem;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+    .note-section p {
+        color: #555;
+        font-size: 0.95rem;
+    }
+    
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Điều khoản & Chính sách bảo mật</h1>
+    <p>Terms & Privacy Policy - Áp dụng cho mọi người dùng CAG Pro Free</p>
+  </header>
+
+  <div class="container">
+    <div class="card">
+      <p style="text-align: center; font-size: 0.9rem; color: #777; margin-bottom: 30px;">
+          *Cập nhật lần cuối: [10/10/2025]*
+      </p>
+
+      <div class="lang-section">
+        <div>
+          <h2>I. Điều Khoản Sử Dụng (Terms of Service)</h2>
+          <p>Phiên bản này có hiệu lực ngay khi bạn bắt đầu sử dụng phần mềm CAG Pro Free.</p>
+          
+          <h3>1. Mục đích và Phạm vi</h3>
+          <p>CAG Pro Free là phần mềm phi thương mại được phát triển nhằm mục đích hỗ trợ và nâng cao trải nghiệm cho cộng đồng Games Net tại Việt Nam. Bằng việc sử dụng phần mềm, bạn đồng ý với các điều khoản này.</p>
+          
+          <h3>2. Trách nhiệm của Người dùng</h3>
+          <ul>
+            <li>Người dùng chịu trách nhiệm hoàn toàn về tính chính xác, hợp pháp của thông tin đăng ký (chủ phòng máy, hội viên).</li>
+            <li>Nghiêm cấm mọi hành vi gian lận, phá hoại, xâm phạm trái phép vào hệ thống, mã nguồn hoặc các tài sản sở hữu trí tuệ của CAG.</li>
+            <li>Không sử dụng phần mềm cho các mục đích thương mại không được cho phép, hoặc bất kỳ hoạt động nào vi phạm pháp luật Việt Nam.</li>
+          </ul>
+
+          <h3>3. Quyền Sở Hữu Trí Tuệ</h3>
+          <p>Tất cả nội dung, thiết kế, mã nguồn, nhãn hiệu (trademarks) và các tài sản trí tuệ khác liên quan đến CAG Pro Cloud/CAG Pro Free đều thuộc sở hữu của CAG Việt Nam. Nghiêm cấm sao chép, chỉnh sửa, hoặc sử dụng lại dưới mọi hình thức mà không có sự đồng ý bằng văn bản của CAG.</p>
+
+          <h3>4. Giới hạn Trách nhiệm</h3>
+          <p>CAG Pro Free được cung cấp "nguyên trạng" (as-is) và phi thương mại. CAG không chịu trách nhiệm đối với bất kỳ thiệt hại trực tiếp, gián tiếp, hoặc hệ quả nào phát sinh từ việc sử dụng hoặc không thể sử dụng phần mềm, ngoại trừ những trường hợp theo quy định của pháp luật Việt Nam hiện hành.</p>
+
+          <br>
+          <h2>II. Chính Sách Bảo Mật (Privacy Policy)</h2>
+          
+          <h3>1. Thu thập và Sử dụng Thông tin</h3>
+          <p>CAG có quyền thu thập, lưu trữ và xử lý các loại thông tin sau:</p>
+          <ul>
+              <li>**Thông tin đăng ký**: Tên chủ phòng máy, tên cơ sở, email, số điện thoại (được sử dụng để xác thực tài khoản và hỗ trợ kỹ thuật).</li>
+              <li>**Thông tin vận hành**: Dữ liệu kỹ thuật về hiệu suất hệ thống, cấu hình phần cứng (chỉ nhằm mục đích cải tiến dịch vụ và tính tương thích).</li>
+              <li>Việc thu thập tuân thủ Nghị định 13/2023/NĐ-CP và pháp luật Việt Nam hiện hành về bảo vệ dữ liệu cá nhân.</li>
+          </ul>
+
+          <h3>2. Bảo mật và Lưu trữ Dữ liệu</h3>
+          <p>CAG cam kết áp dụng các biện pháp bảo mật kỹ thuật và tổ chức cần thiết để bảo vệ thông tin người dùng khỏi việc truy cập, sử dụng, hoặc tiết lộ trái phép. Dữ liệu được lưu trữ trên các máy chủ bảo mật, tuân thủ tiêu chuẩn an toàn thông tin.</p>
+
+          <h3>3. Chia sẻ Dữ liệu</h3>
+          <p>CAG KHÔNG bán thông tin cá nhân của người dùng cho bên thứ ba vì mục đích thương mại. Dữ liệu chỉ được chia sẻ trong các trường hợp sau:</p>
+          <ul>
+              <li>Phân tích tổng hợp, thống kê (dữ liệu được ẩn danh).</li>
+              <li>Chia sẻ với đối tác kỹ thuật, nhà cung cấp dịch vụ để duy trì hệ thống (có thỏa thuận bảo mật).</li>
+              <li>Theo yêu cầu hợp pháp của cơ quan nhà nước có thẩm quyền.</li>
+          </ul>
+          
+          <br>
+          <h2>III. Điều Khoản Chung (General Provisions)</h2>
+
+          <h3>1. Chấp thuận Điều khoản</h3>
+          <p>Bằng việc cài đặt, truy cập, hoặc tiếp tục sử dụng CAG Pro Free, bạn xác nhận rằng bạn đã đọc, hiểu và hoàn toàn đồng ý với toàn bộ Điều khoản Sử dụng và Chính sách Bảo mật này.</p>
+          
+          <h3>2. Sửa đổi Điều khoản</h3>
+          <p>CAG có quyền sửa đổi hoặc cập nhật các điều khoản này vào bất kỳ thời điểm nào. Mọi thay đổi sẽ được thông báo trên trang chủ hoặc thông qua phần mềm. Việc tiếp tục sử dụng sau khi điều khoản được sửa đổi đồng nghĩa với việc bạn chấp nhận các điều khoản mới.</p>
+
+        </div>
+
+        <div>
+          <h2>I. Terms of Service</h2>
+          <p>This version is effective immediately upon your commencement of using the CAG Pro Free software.</p>
+          
+          <h3>1. Purpose and Scope</h3>
+          <p>CAG Pro Free is non-commercial software developed to support and enhance the experience for the Games Net community in Vietnam. By using the software, you agree to these terms.</p>
+          
+          <h3>2. User Responsibilities</h3>
+          <ul>
+            <li>Users are solely responsible for the accuracy and legality of the registration information they provide (store owner, member).</li>
+            <li>Any fraudulent actions, sabotage, unauthorized intrusion into the system, source code, or CAG's intellectual property are strictly prohibited.</li>
+            <li>Do not use the software for unauthorized commercial purposes, or any activities that violate Vietnamese law.</li>
+          </ul>
+
+          <h3>3. Intellectual Property Rights</h3>
+          <p>All contents, designs, source codes, trademarks, and other intellectual assets related to CAG Pro Cloud/CAG Pro Free are owned by CAG Vietnam. Copying, modifying, or reusing in any form without the written consent of CAG is strictly prohibited.</p>
+
+          <h3>4. Limitation of Liability</h3>
+          <p>CAG Pro Free is provided "as-is" and is non-commercial. CAG shall not be liable for any direct, indirect, or consequential damages arising from the use or inability to use the software, except as stipulated by current Vietnamese law.</p>
+
+          <br>
+          <h2>II. Privacy Policy</h2>
+          
+          <h3>1. Information Collection and Use</h3>
+          <p>CAG reserves the right to collect, store, and process the following types of information:</p>
+          <ul>
+              <li>**Registration Information**: Store owner's name, establishment name, email, phone number (used for account verification and technical support).</li>
+              <li>**Operational Information**: Technical data on system performance, hardware configuration (only for the purpose of service improvement and compatibility).</li>
+              <li>Data collection complies with Decree 13/2023/ND-CP and current Vietnamese laws on personal data protection.</li>
+          </ul>
+
+          <h3>2. Data Security and Storage</h3>
+          <p>CAG commits to applying necessary technical and organizational security measures to protect user information from unauthorized access, use, or disclosure. Data is stored on secure servers, complying with information security standards.</p>
+
+          <h3>3. Data Sharing</h3>
+          <p>CAG DOES NOT sell users' personal information to third parties for commercial purposes. Data is only shared in the following cases:</p>
+          <ul>
+              <li>Aggregated, statistical analysis (data is anonymized).</li>
+              <li>Sharing with technical partners, service providers to maintain the system (under strict confidentiality agreements).</li>
+              <li>Upon lawful request from authorized state agencies.</li>
+          </ul>
+
+          <br>
+          <h2>III. General Provisions</h2>
+
+          <h3>1. Acceptance of Terms</h3>
+          <p>By installing, accessing, or continuing to use CAG Pro Free, you confirm that you have read, understood, and fully agree to all of these Terms of Service and Privacy Policy.</p>
+          
+          <h3>2. Modification of Terms</h3>
+          <p>CAG reserves the right to modify or update these terms at any time. Any changes will be announced on the homepage or through the software. Continued use after the terms are modified constitutes your acceptance of the new terms.</p>
+
+        </div>
+      </div>
+
+      <div class="note-section">
+          <h4>Về Sứ Mệnh và Cơ Hội Cộng Tác Phát Triển (Our Mission and Collaboration Opportunity)</h4>
+          <p>
+              CAG Pro Free được phát triển bởi CAG Pro Team theo đơn đặt hàng chiến lược từ **Vi Tính An Phát**, đơn vị chủ quản trực tiếp. Chúng tôi, CAG và các thành viên, cộng tác viên, đối tác kỹ thuật, cùng nhau hiệp lực vì một sứ mệnh chung: **Cung cấp một công cụ quản lý chất lượng, hiệu suất cao, giúp chủ phòng máy tại Việt Nam vận hành hoạt động kinh doanh hiệu quả hơn.**
+          </p>
+          <p>
+              Với mục tiêu phi lợi nhuận và hướng đến cộng đồng, chúng tôi luôn trân trọng và chào đón sự hợp tác. Nếu bạn là một nhà phát triển (Developer) có cùng chí hướng, mong muốn đóng góp kiến thức và kinh nghiệm để nâng cao chất lượng phần mềm, phát triển lợi ích chung cho cộng đồng Games Net, **CAG Pro Team xin gửi lời cảm ơn chân thành và vô cùng vinh dự khi được đón nhận sự tham gia của bạn.**
+          </p>
+          <p style="margin-top: 15px; font-weight: 600;">
+              Liên hệ hợp tác: [luongvinh@vitinhanphat.vn]
+          </p>
+      </div>
+
+
+      <hr style="margin: 40px 0; border: none; border-top: 1px dashed #ccc;">
+      <div style="text-align:center;">
+        <p style="font-size:0.9rem; color:#555; margin-bottom: 20px;">
+          © 2025 CAG Pro Cloud. All rights reserved.<br>
+          **Tuân thủ Nghị định 13/2023/NĐ-CP** về bảo vệ dữ liệu cá nhân và các quy định pháp luật Việt Nam hiện hành.
+        </p>
+
+        <footer>
+          <a href="/" class="home-btn">← Trở về trang chủ / Back to Home</a>
+        </footer>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>

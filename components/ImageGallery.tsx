@@ -2,6 +2,51 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { useTranslation } from '../App';
 
+// Custom Lazy Image Component for better performance and UX
+const LazyImage: React.FC<{ src: string; alt: string; className?: string }> = ({ src, alt, className }) => {
+  const [inView, setInView] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setInView(true);
+            observer.disconnect();
+          }
+        });
+      },
+      { rootMargin: '200px' } // Load images 200px before they appear
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => {
+      if (containerRef.current) observer.unobserve(containerRef.current);
+    };
+  }, []);
+
+  return (
+    <div ref={containerRef} className="w-full h-full flex items-center justify-center">
+      {inView ? (
+        <img
+          src={src}
+          alt={alt}
+          className={`${className} transition-opacity duration-1000 ${isLoaded ? 'opacity-100' : 'opacity-0 blur-sm'}`}
+          onLoad={() => setIsLoaded(true)}
+          style={{ filter: isLoaded ? 'blur(0)' : 'blur(10px)' }}
+        />
+      ) : (
+        <div className="w-12 h-12 rounded-full border-2 border-slate-100 border-t-red-600 animate-spin opacity-30"></div>
+      )}
+    </div>
+  );
+};
+
 const ImageGallery: React.FC = () => {
   const { lang, t } = useTranslation();
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -129,13 +174,14 @@ const ImageGallery: React.FC = () => {
             >
               <div className="group relative bg-white rounded-[5rem] border-2 border-slate-100/60 overflow-hidden shadow-sm hover:shadow-[0_60px_120px_-30px_rgba(0,0,0,0.12)] transition-all duration-1000">
                 <div className="aspect-[16/9] w-full bg-slate-50 relative overflow-hidden flex items-center justify-center p-12">
-                  <div className="absolute inset-0 bg-gradient-to-tr from-slate-100/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
-                  <img 
+                  <div className="absolute inset-0 bg-gradient-to-tr from-slate-100/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000 z-10"></div>
+                  
+                  <LazyImage 
                     src={img.url} 
                     alt={img.title} 
-                    className="max-w-full max-h-full object-contain drop-shadow-[0_40px_80px_rgba(0,0,0,0.15)] transition-transform duration-1000 group-hover:scale-105"
-                    loading="lazy"
+                    className="max-w-full max-h-full object-contain drop-shadow-[0_40px_80px_rgba(0,0,0,0.15)] transition-all duration-700 group-hover:scale-110 group-hover:drop-shadow-[0_20px_50px_rgba(0,0,0,0.3)]"
                   />
+                  
                   <div className="absolute top-12 right-12 z-20">
                     <span className="px-8 py-3 bg-white/70 backdrop-blur-2xl text-slate-900 text-[11px] font-black tracking-[0.4em] rounded-full shadow-2xl border border-white/50">
                       {img.tag}
@@ -152,6 +198,23 @@ const ImageGallery: React.FC = () => {
                     <span className="w-16 h-[2px] bg-slate-100 group-hover:w-24 transition-all duration-700 group-hover:bg-red-200"></span>
                     <span>Explore Interface Details</span>
                   </div>
+
+                  <button 
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      const link = document.createElement('a');
+                      link.href = img.url;
+                      link.download = `cag-pro-${img.tag.toLowerCase()}.jpg`;
+                      link.target = '_blank';
+                      document.body.appendChild(link);
+                      link.click();
+                      document.body.removeChild(link);
+                    }}
+                    className="absolute right-12 bottom-12 w-12 h-12 rounded-full border border-slate-200 bg-white text-slate-400 flex items-center justify-center hover:bg-red-600 hover:border-red-600 hover:text-white transition-all duration-300 shadow-sm z-20 group/btn"
+                    title={lang === 'vi' ? 'Tải xuống' : 'Download'}
+                  >
+                     <svg className="w-5 h-5 group-hover/btn:animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                  </button>
                 </div>
               </div>
             </div>
