@@ -1,0 +1,126 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAG Pro | Giải Pháp Công Nghệ iCafe Toàn Diện</title>
+    
+    <meta name="description" content="CAG Pro - Phần mềm quản lý Billing, Bootrom Cloud 10G chuyên nghiệp. Phát triển bởi Cyber All Game.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --brand-red: #e11d48;
+            --bg-light: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+        }
+        
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            line-height: 1.5;
+        }
+
+        .heading-tech {
+            font-family: 'Space Grotesk', Arial, sans-serif;
+            letter-spacing: -0.05em;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(225, 29, 72, 0.2);
+            background: rgba(255, 255, 255, 1);
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.1);
+        }
+
+        .red-gradient-text {
+            background: linear-gradient(135deg, #0f172a 30%, #e11d48 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .lang-active {
+            color: white;
+            background: var(--brand-red);
+            border-radius: 6px;
+        }
+
+        .grid-pattern {
+            background-image: radial-gradient(#f1f5f9 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #ffffff; }
+        ::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--brand-red); }
+        
+        @keyframes fade-in {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in { animation: fade-in 0.5s ease forwards; }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@19.0.0",
+    "react/": "https://esm.sh/react@19.0.0/",
+    "react-dom": "https://esm.sh/react-dom@19.0.0",
+    "react-dom/": "https://esm.sh/react-dom@19.0.0/",
+    "react-dom/client": "https://esm.sh/react-dom@19.0.0/client",
+    "@google/genai": "https://esm.sh/@google/genai@1.34.0"
+  }
+}
+</script>
+</head>
+<body class="grid-pattern">
+    <div id="root"></div>
+    
+    <script>
+        // Polyfill process for browser environment to avoid ReferenceError
+        window.process = window.process || { env: { API_KEY: "" } };
+
+        // Global error handler for debugging white screen
+        window.onerror = function(msg, url, lineNo, columnNo, error) {
+            console.error('CAG Global Error:', msg, url, lineNo);
+            return false;
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('active');
+            });
+        }, { threshold: 0.1 });
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const elements = document.querySelectorAll('.reveal');
+            elements.forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+</html>
