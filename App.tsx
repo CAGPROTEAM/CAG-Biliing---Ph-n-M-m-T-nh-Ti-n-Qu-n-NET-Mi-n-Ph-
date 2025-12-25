@@ -1,9 +1,10 @@
 
-import React, { useState, createContext, useContext } from 'react';
+import React, { useState, createContext, useContext, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Mission from './components/Mission';
 import Features from './components/Features';
+import ImageGallery from './components/ImageGallery';
 import AIShowcase from './components/AIShowcase';
 import RegistrationForm from './components/RegistrationForm';
 import Pricing from './components/Pricing';
@@ -19,50 +20,54 @@ interface LanguageContextType {
 
 const translations: Record<Language, Record<string, string>> = {
   vi: {
-    'nav.features': 'Tính Năng',
-    'nav.ai': 'Trí Tuệ Nhân Tạo',
-    'nav.pricing': 'Gói Giải Pháp',
-    'nav.register': 'Đăng Ký',
-    'hero.badge': 'Hệ sinh thái iCafe 4.0',
-    'hero.title.top': 'Kỷ Nguyên Mới',
-    'hero.title.bottom': 'PHẦN MỀM CAG PRO',
-    'hero.desc': 'Giải pháp quản trị toàn diện dành cho Cyber Game hiện đại từ Vi Tính An Phát.',
-    'hero.cta.start': 'BẮT ĐẦU NGAY',
-    'hero.cta.call': 'GỌI TƯ VẤN',
-    'mission.title': 'DI SẢN & TẦM NHÌN',
-    'mission.quote': 'Công nghệ là đòn bẩy, Uy tín là nền móng.',
-    'mission.desc': 'CAG Pro không chỉ là phần mềm, đó là lời cam kết từ Cyber All Game dành cho cộng đồng iCafe Việt Nam.',
-    'mission.oem.title': 'DỊCH VỤ OEM RIÊNG BIỆT',
-    'mission.oem.desc': 'Xây dựng đế chế Cyber Game riêng với thương hiệu của chính bạn.',
-    'mission.oem.cta': 'HỢP TÁC OEM',
+    'nav.features': 'Giải Pháp',
+    'nav.ai': 'Hỗ Trợ AI',
+    'nav.pricing': 'Bảng Giá',
+    'nav.register': 'Liên Hệ Ngay',
+    'hero.badge': 'Tiên Phong Bootrom Cloud 10G',
+    'hero.title.top': 'Kiến Tạo',
+    'hero.title.bottom': 'CHUẨN MỰC iCAFE',
+    'hero.desc': 'Giải pháp Bootrom Cloud 10G & Billing miễn phí vĩnh viễn từ Vi Tính An Phát. Tối ưu hiệu suất, tiết kiệm chi phí, vận hành thông minh.',
+    'hero.cta.start': 'SỬ DỤNG MIỄN PHÍ',
+    'hero.cta.call': '0909.107.789',
+    'mission.title': 'CHIẾN LƯỢC PHÁT TRIỂN',
+    'mission.quote': 'Công nghệ dẫn lối - Dịch vụ tận tâm.',
+    'mission.desc': 'CAG Pro không chỉ là phần mềm, chúng tôi cung cấp một hệ sinh thái toàn diện giúp chủ phòng máy giải quyết triệt để bài toán doanh thu và quản lý kỹ thuật 24/7.',
+    'mission.oem.title': 'GIẢI PHÁP OEM BRANDING',
+    'mission.oem.desc': 'Cá nhân hóa giao diện và thương hiệu riêng của bạn trên nền tảng công nghệ CAG Pro đẳng cấp.',
+    'mission.oem.cta': 'HỢP TÁC THƯƠNG HIỆU',
+    'gallery.title': 'HỆ SINH THÁI CAG',
+    'gallery.desc': 'Trực quan hóa các module tính năng vượt trội: Từ Billing, Cloud đến hệ thống quản lý tập trung.',
     'reg.title': 'ĐĂNG KÝ CÀI ĐẶT',
-    'reg.desc': 'Bản quyền CAG Billing MIỄN PHÍ vĩnh viễn và hỗ trợ kỹ thuật chuyên nghiệp.',
-    'reg.btn': 'HOÀN TẤT ĐĂNG KÝ',
+    'reg.desc': 'Gia nhập cộng đồng iCafe hiện đại với sự hỗ trợ từ đội ngũ chuyên gia Vi Tính An Phát.',
+    'reg.btn': 'XÁC NHẬN ĐĂNG KÝ',
     'mobile.call': 'GỌI NGAY',
-    'mobile.reg': 'ĐĂNG KÝ 0Đ'
+    'mobile.reg': 'ĐĂNG KÝ'
   },
   en: {
-    'nav.features': 'Features',
-    'nav.ai': 'Neural AI',
-    'nav.pricing': 'Solutions',
-    'nav.register': 'Register',
-    'hero.badge': 'iCafe 4.0 Ecosystem',
-    'hero.title.top': 'The Next Gen',
-    'hero.title.bottom': 'CAG PRO SOFTWARE',
-    'hero.desc': 'Comprehensive management solutions for modern Cyber Games by An Phat Computer.',
-    'hero.cta.start': 'GET STARTED',
-    'hero.cta.call': 'CONSULT NOW',
-    'mission.title': 'LEGACY & VISION',
-    'mission.quote': 'Technology is the lever, Trust is the foundation.',
-    'mission.desc': 'CAG Pro is more than software, it is a commitment from Cyber All Game to the iCafe community.',
-    'mission.oem.title': 'PRIVATE OEM SERVICE',
-    'mission.oem.desc': 'Build your own Cyber Game empire with your own unique branding.',
-    'mission.oem.cta': 'OEM PARTNERSHIP',
-    'reg.title': 'REGISTRATION',
-    'reg.desc': 'Get CAG Billing FREE forever with professional technical support.',
-    'reg.btn': 'SUBMIT REGISTRATION',
-    'mobile.call': 'CALL NOW',
-    'mobile.reg': 'FREE SETUP'
+    'nav.features': 'Solutions',
+    'nav.ai': 'AI Support',
+    'nav.pricing': 'Pricing',
+    'nav.register': 'Contact Now',
+    'hero.badge': 'Pioneer in 10G Cloud Bootrom',
+    'hero.title.top': 'Engineering',
+    'hero.title.bottom': 'iCAFE STANDARDS',
+    'hero.desc': 'Ultimate 10G Cloud Bootrom & Free Billing solution by An Phat. Optimize performance, save costs, operate smartly.',
+    'hero.cta.start': 'GET FREE LICENSE',
+    'hero.cta.call': '0909.107.789',
+    'mission.title': 'STRATEGIC GROWTH',
+    'mission.quote': 'Technology leads - Service endures.',
+    'mission.desc': 'CAG Pro is more than software; we provide a comprehensive ecosystem to help iCafe owners solve revenue and 24/7 technical management problems.',
+    'mission.oem.title': 'OEM BRANDING SOLUTION',
+    'mission.oem.desc': 'Personalize your own interface and brand on the high-end CAG Pro technology platform.',
+    'mission.oem.cta': 'BRAND PARTNERSHIP',
+    'gallery.title': 'CAG ECOSYSTEM',
+    'gallery.desc': 'Visualize superior feature modules: From Billing, Cloud to centralized management systems.',
+    'reg.title': 'INSTALLATION REGISTRY',
+    'reg.desc': 'Join the modern iCafe community with support from An Phat expert team.',
+    'reg.btn': 'CONFIRM REGISTRY',
+    'mobile.call': 'CALL',
+    'mobile.reg': 'REGISTER'
   }
 };
 
@@ -78,25 +83,38 @@ const App: React.FC = () => {
   const [lang, setLang] = useState<Language>('vi');
   const t = (key: string) => translations[lang][key] || key;
 
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('active');
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    return () => observer.disconnect();
+  }, [lang]);
+
   return (
     <LanguageContext.Provider value={{ lang, setLang, t }}>
-      <div className="min-h-screen relative bg-[#f8fafc] text-[#0f172a]">
+      <div className="min-h-screen bg-white text-[#0f172a] selection:bg-red-100 selection:text-red-900">
         <Navbar />
         <main>
           <Hero />
           <Mission />
           <Features />
+          <ImageGallery />
           <AIShowcase />
           <RegistrationForm />
           <Pricing />
         </main>
         <Footer />
-        <div className="lg:hidden fixed bottom-6 left-4 right-4 z-[100]">
-          <div className="bg-white/90 backdrop-blur-2xl border border-slate-200 rounded-2xl p-2 flex gap-2 shadow-2xl">
-            <a href="tel:0909107789" className="flex-1 bg-slate-100 text-[#0f172a] h-14 rounded-xl flex items-center justify-center gap-2 font-bold text-xs uppercase tracking-wider border border-slate-200">
+        
+        <div className="lg:hidden fixed bottom-8 left-1/2 -translate-x-1/2 w-[90%] z-[100]">
+          <div className="bg-slate-900/90 backdrop-blur-xl rounded-2xl p-2 flex gap-2 shadow-2xl border border-white/10">
+            <a href="tel:0909107789" className="flex-1 h-12 rounded-xl flex items-center justify-center font-bold text-[10px] uppercase tracking-widest text-white border border-white/10">
               {t('mobile.call')}
             </a>
-            <a href="#dang-ky-cai-dat" className="flex-[1.5] bg-red-600 text-white h-14 rounded-xl flex items-center justify-center gap-2 font-bold text-xs uppercase tracking-wider shadow-lg shadow-red-600/20">
+            <a href="#dang-ky-cai-dat" className="flex-[1.5] h-12 bg-red-600 rounded-xl flex items-center justify-center font-bold text-[10px] uppercase tracking-widest text-white shadow-lg shadow-red-600/20">
               {t('mobile.reg')}
             </a>
           </div>

@@ -7,40 +7,40 @@ const Features: React.FC = () => {
 
   const features = [
     {
-      title: lang === 'vi' ? "BOOTROM CLOUD 10G" : "10G CLOUD BOOTROM",
-      desc: lang === 'vi' ? "Tối ưu hóa tốc độ đọc ghi đĩa cứng, vận hành mượt mà trên hạ tầng 10G." : "Optimize disk read/write speeds, running smoothly on 10G infrastructure.",
+      title: lang === 'vi' ? "BOOTROM CLOUD 10G" : "BOOTROM CLOUD 10G",
+      desc: lang === 'vi' ? "Công nghệ không ổ cứng băng thông siêu rộng 10Gbps, đảm bảo máy trạm khởi động và load game trong tích tắc." : "Diskless technology with 10Gbps bandwidth, ensuring workstations start and load games instantly.",
       icon: "M13 10V3L4 14h7v7l9-11h-7z"
     },
     {
-      title: lang === 'vi' ? "AUTO UPDATE" : "AUTO GAME UPDATER",
-      desc: lang === 'vi' ? "Tự động cập nhật 500+ Game hot nhất, không cần nhân sự vận hành." : "Automatically update 500+ top trending games without manual operation.",
+      title: lang === 'vi' ? "AUTO UPDATE GAME" : "AUTO UPDATE GAME",
+      desc: lang === 'vi' ? "Kho game khổng lồ tự động cập nhật 24/7. Tối ưu dung lượng và đường truyền cho mọi quy mô phòng máy." : "Massive game library updated automatically 24/7. Optimize storage and connection for all iCafe sizes.",
       icon: "M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
     },
     {
-      title: lang === 'vi' ? "CAG BILLING" : "CAG BILLING SYSTEM",
-      desc: lang === 'vi' ? "Hệ thống tính tiền Cloud hiện đại, nạp tiền QR tự động và quản lý từ xa." : "Modern cloud billing system, automated QR payments, and remote management.",
+      title: lang === 'vi' ? "BILLING MIỄN PHÍ" : "FREE BILLING",
+      desc: lang === 'vi' ? "Phần mềm tính tiền bản quyền 0đ. Tích hợp thanh toán QR, báo cáo doanh thu qua điện thoại mọi lúc mọi nơi." : "0 VND licensing billing software. Integrated QR payment, revenue reporting via phone anytime, anywhere.",
       icon: "M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2"
     },
     {
-      title: lang === 'vi' ? "DỊCH VỤ OEM" : "OEM BRANDING",
-      desc: lang === 'vi' ? "Cá nhân hóa giao diện và thương hiệu chuyên biệt cho từng phòng máy." : "Personalize interface and branding specifically for each cyber game.",
+      title: lang === 'vi' ? "OEM BRANDING" : "OEM BRANDING",
+      desc: lang === 'vi' ? "Cho phép chủ đầu tư sử dụng logo và bộ nhận diện thương hiệu riêng trên toàn hệ thống phần mềm." : "Allow investors to use their own logo and brand identity throughout the software system.",
       icon: "M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16"
     }
   ];
 
   return (
-    <section id="hệ-sinh-thái" className="py-32 px-6 bg-[#f8fafc]">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+    <section id="hệ-sinh-thái" className="py-40 px-10 bg-white">
+      <div className="max-w-[1720px] mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
           {features.map((f, i) => (
-            <div key={i} className="reveal glass-card p-10 rounded-3xl flex flex-col items-start group bg-white border-slate-200">
-              <div className="w-14 h-14 bg-red-600/5 rounded-2xl flex items-center justify-center text-red-600 mb-8 transition-all group-hover:bg-red-600 group-hover:text-white shadow-sm">
-                <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d={f.icon} />
+            <div key={i} className="reveal p-16 rounded-[3rem] border-2 border-slate-50 hover:border-red-100 hover:bg-slate-50/50 hover:shadow-2xl transition-all duration-1000 group">
+              <div className="w-20 h-20 flex items-center justify-center bg-slate-50 rounded-3xl text-slate-400 group-hover:bg-red-600 group-hover:text-white transition-all duration-700 mb-12 shadow-sm">
+                <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d={f.icon} />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold mb-4 uppercase tracking-tight text-[#0f172a]">{f.title}</h3>
-              <p className="text-slate-500 text-sm leading-relaxed font-medium">{f.desc}</p>
+              <h3 className="text-lg font-black mb-6 uppercase tracking-[0.4em] text-[#0f172a] group-hover:text-red-600 transition-colors">{f.title}</h3>
+              <p className="text-slate-400 text-sm leading-relaxed font-bold uppercase tracking-wider opacity-80">{f.desc}</p>
             </div>
           ))}
         </div>

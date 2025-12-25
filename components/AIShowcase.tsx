@@ -1,11 +1,10 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { getGeminiResponse } from '../services/geminiService';
 import { ChatMessage } from '../types';
 import { useTranslation } from '../App';
 
 const AIShowcase: React.FC = () => {
-  const { lang, t } = useTranslation();
+  const { lang } = useTranslation();
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
@@ -27,39 +26,59 @@ const AIShowcase: React.FC = () => {
   };
 
   return (
-    <section id="neural-ai" className="py-32 px-6 bg-white">
-      <div className="max-w-7xl mx-auto grid lg:grid-cols-12 gap-20 items-center">
+    <section id="neural-ai" className="py-32 px-6 bg-white overflow-hidden">
+      <div className="max-w-6xl mx-auto grid lg:grid-cols-12 gap-20 items-center">
         <div className="lg:col-span-5 reveal">
-          <div className="inline-block px-3 py-1 bg-red-600/5 text-red-600 text-[10px] font-black uppercase tracking-widest mb-6 border border-red-100">CAG Neural Core</div>
-          <h2 className="heading-tech text-4xl md:text-6xl font-bold uppercase mb-8 leading-[1.1] text-[#0f172a]">NEURAL <br /><span className="red-gradient-text italic">ENGINE</span></h2>
-          <p className="text-slate-500 text-lg font-medium leading-relaxed mb-10">
-            {lang === 'vi' ? 'Trợ lý AI thấu hiểu mọi nghiệp vụ vận hành iCafe và kỹ thuật Bootrom Cloud.' : 'AI assistant for iCafe operations and Bootrom Cloud technical support.'}
+          <p className="text-[10px] font-black uppercase tracking-[0.5em] text-red-600 mb-6 italic">Innovation</p>
+          <h2 className="text-4xl md:text-6xl font-black uppercase mb-10 leading-[0.9] text-[#0f172a]">NEURAL <br /><span className="text-slate-300">CORE</span></h2>
+          <p className="text-slate-400 text-xs font-bold uppercase tracking-widest leading-loose max-w-sm">
+            {lang === 'vi' ? 'Trí tuệ nhân tạo độc quyền, thấu hiểu mọi yêu cầu kỹ thuật và vận hành iCafe đỉnh cao.' : 'Exclusive AI intelligence, understanding all technical and high-end iCafe operation requirements.'}
           </p>
         </div>
+        
         <div className="lg:col-span-7 reveal">
-          <div className="rounded-[2rem] overflow-hidden border border-slate-200 flex flex-col h-[600px] relative bg-slate-50 shadow-2xl">
-            <div className="bg-white px-8 py-4 border-b border-slate-200 flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-red-600 animate-pulse"></div>
-                <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400">System Online</span>
-              </div>
-            </div>
-            <div ref={scrollRef} className="flex-1 overflow-y-auto p-8 space-y-8 scrollbar-hide">
-              {messages.map((msg, i) => (
-                <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                  <div className={`max-w-[85%] p-5 rounded-2xl text-sm font-semibold leading-relaxed ${msg.role === 'user' ? 'bg-red-600 text-white' : 'bg-white text-slate-700 border border-slate-200 shadow-sm'}`}>
-                    {msg.content}
-                  </div>
+          <div className="bg-slate-50/50 rounded-[3rem] border border-slate-100 p-2 overflow-hidden shadow-2xl shadow-slate-200/50">
+            <div className="bg-white rounded-[2.5rem] flex flex-col h-[550px] relative">
+              <div className="px-10 py-6 border-b border-slate-50 flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></div>
+                  <span className="text-[9px] font-black uppercase tracking-[0.3em] text-slate-400">Core Active</span>
                 </div>
-              ))}
-              {isTyping && <div className="flex justify-start"><div className="bg-white p-4 rounded-xl animate-pulse border border-slate-200 shadow-sm">...</div></div>}
-            </div>
-            <div className="p-6 bg-white border-t border-slate-200">
-              <div className="relative">
-                <input type="text" value={input} onChange={(e) => setInput(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && handleSend()} placeholder={lang === 'vi' ? 'Hỏi tôi về CAG Pro...' : 'Ask about CAG Pro...'} className="w-full bg-slate-50 border border-slate-200 rounded-xl px-6 py-4 text-sm font-semibold outline-none focus:border-red-600/50 transition-all text-[#0f172a]" />
-                <button onClick={handleSend} className="absolute right-2 top-1/2 -translate-y-1/2 p-2 text-red-600 hover:text-red-700">
-                  <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"/></svg>
-                </button>
+              </div>
+
+              <div ref={scrollRef} className="flex-1 overflow-y-auto p-10 space-y-10 scrollbar-hide">
+                {messages.length === 0 && (
+                  <div className="h-full flex flex-col items-center justify-center text-center">
+                    <div className="w-12 h-12 rounded-full bg-slate-50 flex items-center justify-center mb-4">
+                      <svg className="w-6 h-6 text-slate-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/></svg>
+                    </div>
+                    <p className="text-[10px] font-black text-slate-300 uppercase tracking-widest">{lang === 'vi' ? 'Khởi tạo hội thoại...' : 'Initiating conversation...'}</p>
+                  </div>
+                )}
+                {messages.map((msg, i) => (
+                  <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
+                    <div className={`max-w-[85%] p-6 rounded-2xl text-[11px] font-bold tracking-tight leading-relaxed ${msg.role === 'user' ? 'bg-slate-900 text-white' : 'bg-slate-50 text-slate-600'}`}>
+                      {msg.content}
+                    </div>
+                  </div>
+                ))}
+                {isTyping && <div className="flex justify-start"><div className="bg-slate-50 px-4 py-2 rounded-full text-[10px] font-bold text-slate-300 animate-pulse">Thinking...</div></div>}
+              </div>
+
+              <div className="p-6">
+                <div className="relative group">
+                  <input 
+                    type="text" 
+                    value={input} 
+                    onChange={(e) => setInput(e.target.value)} 
+                    onKeyDown={(e) => e.key === 'Enter' && handleSend()} 
+                    placeholder={lang === 'vi' ? 'TRUY VẤN DỮ LIỆU...' : 'QUERY DATA...'} 
+                    className="w-full bg-slate-50 border border-slate-100 rounded-full px-8 py-5 text-[11px] font-black uppercase tracking-widest outline-none focus:bg-white focus:border-red-600/30 transition-all text-[#0f172a] placeholder:text-slate-300 shadow-inner"
+                  />
+                  <button onClick={handleSend} className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center text-red-600 hover:bg-red-600 hover:text-white transition-all">
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                  </button>
+                </div>
               </div>
             </div>
           </div>

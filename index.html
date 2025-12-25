@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -8,7 +7,7 @@
     
     <meta name="description" content="CAG Pro - Phần mềm quản lý Billing, Bootrom Cloud 10G chuyên nghiệp. Phát triển bởi Cyber All Game.">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
     <style>
         :root {
             --brand-red: #e11d48;
@@ -18,17 +17,17 @@
         }
         
         body {
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: "Times New Roman", Times, serif;
             background-color: var(--bg-light);
             color: var(--text-main);
             overflow-x: hidden;
             scroll-behavior: smooth;
-            line-height: 1.5;
+            line-height: 1.6;
         }
 
         .heading-tech {
-            font-family: 'Space Grotesk', Arial, sans-serif;
-            letter-spacing: -0.05em;
+            font-family: 'Playfair Display', "Times New Roman", serif;
+            letter-spacing: -0.02em;
         }
 
         .glass-card {
@@ -54,23 +53,28 @@
 
         .reveal {
             opacity: 0;
-            transform: translateY(20px);
-            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .reveal.active {
             opacity: 1;
             transform: translateY(0);
         }
 
-        .lang-active {
-            color: white;
-            background: var(--brand-red);
-            border-radius: 6px;
-        }
-
         .grid-pattern {
             background-image: radial-gradient(#f1f5f9 1px, transparent 1px);
             background-size: 30px 30px;
+        }
+
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .scrollbar-hide {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
         }
 
         /* Custom Scrollbar */
@@ -102,25 +106,8 @@
     <div id="root"></div>
     
     <script>
-        // Polyfill process for browser environment to avoid ReferenceError
         window.process = window.process || { env: { API_KEY: "" } };
-
-        // Global error handler for debugging white screen
-        window.onerror = function(msg, url, lineNo, columnNo, error) {
-            console.error('CAG Global Error:', msg, url, lineNo);
-            return false;
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('active');
-            });
-        }, { threshold: 0.1 });
-
-        window.addEventListener('DOMContentLoaded', () => {
-            const elements = document.querySelectorAll('.reveal');
-            elements.forEach(el => observer.observe(el));
-        });
     </script>
+    <script type="module" src="index.tsx"></script>
 </body>
 </html>

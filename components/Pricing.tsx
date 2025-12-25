@@ -1,108 +1,90 @@
 
 import React from 'react';
-
-const tiers = [
-  {
-    name: "CAG Billing (Community)",
-    price: "0 VNĐ",
-    description: "Bản quyền miễn phí vĩnh viễn dành cho cộng đồng iCafe Việt Nam. Tuyệt đối không chi phí ẩn.",
-    features: ["Full tính năng quản lý Cloud", "Nạp tiền QR tự động 0% phí", "Báo cáo doanh thu thời gian thực", "Order dịch vụ & Menu App", "Không giới hạn số lượng máy"],
-    popular: false,
-    isFree: true,
-    cta: "TẢI MIỄN PHÍ VĨNH VIỄN",
-    subCta: "Vì cộng đồng iCafe Việt Nam",
-    link: "#dang-ky-cai-dat"
-  },
-  {
-    name: "Dịch vụ Kỹ thuật & Update",
-    price: "TỪ 10.000đ",
-    unit: "/máy/tháng",
-    description: "Dịch vụ vận hành Bootrom và cập nhật Game tự động chuyên nghiệp.",
-    features: ["Cài đặt Bootrom Cloud 10G", "Auto Update 500+ Game hot", "Hỗ trợ kỹ thuật 24/7", "Xử lý sự cố phần cứng/mềm", "Tối ưu hóa Performance máy"],
-    popular: true,
-    cta: "XEM CHI TIẾT GIÁ",
-    subCta: "Chính sách support niêm yết",
-    link: "https://cagboot.com/cam-nang-icafe/chinh-sach-suport-phan-mem-cap-nhat-game-tu-dong-cho-khach-hang-34.html"
-  },
-  {
-    name: "Giải pháp OEM",
-    price: "CUSTOM",
-    description: "Thiết kế riêng cho chuỗi Cyber Game lớn và đại lý muốn xây dựng thương hiệu.",
-    features: ["Brand giao diện riêng biệt", "Hệ thống quản lý tập trung", "Setup trọn gói chuyên sâu", "Chuyên gia On-site hỗ trợ", "Bảo mật dữ liệu riêng tư"],
-    popular: false,
-    cta: "LIÊN HỆ PARTNER",
-    subCta: "Dành cho chuỗi Cyber Game",
-    link: "tel:0909107789"
-  }
-];
+import { useTranslation } from '../App';
 
 const Pricing: React.FC = () => {
+  const { lang } = useTranslation();
+
+  const tiers = [
+    {
+      name: lang === 'vi' ? "CAG BILLING" : "CAG BILLING",
+      price: "0",
+      currency: "VNĐ",
+      desc: lang === 'vi' ? "Bản quyền miễn phí trọn đời." : "Lifetime free licensing.",
+      features: [
+        lang === 'vi' ? "Quản lý tính tiền chuyên nghiệp" : "Professional billing management",
+        lang === 'vi' ? "Nạp tiền QR tự động 100%" : "100% Automatic QR Recharge",
+        lang === 'vi' ? "Báo cáo doanh thu Mobile" : "Mobile Revenue Reports"
+      ],
+      cta: lang === 'vi' ? "DÙNG NGAY 0đ" : "START FOR 0đ",
+      highlight: false
+    },
+    {
+      name: lang === 'vi' ? "DỊCH VỤ SUPPORT" : "TECH SUPPORT",
+      price: "10K",
+      currency: "/PC/THÁNG",
+      desc: lang === 'vi' ? "Hỗ trợ kỹ thuật & Update Game." : "Tech Support & Game Updates.",
+      features: [
+        lang === 'vi' ? "Auto Update Game 24/7" : "24/7 Auto Game Updates",
+        lang === 'vi' ? "Hỗ trợ kỹ thuật từ xa & trực tiếp" : "Remote & On-site support",
+        lang === 'vi' ? "Bảo trì hệ thống định kỳ" : "Periodic system maintenance"
+      ],
+      cta: lang === 'vi' ? "LIÊN HỆ ĐĂNG KÝ" : "SUBSCRIBE NOW",
+      highlight: true
+    },
+    {
+      name: lang === 'vi' ? "TRỌN GÓI CYBER" : "FULL CYBER",
+      price: "CUSTOM",
+      currency: "",
+      desc: lang === 'vi' ? "Thi công & Lắp đặt trọn gói." : "Full Installation & Setup.",
+      features: [
+        lang === 'vi' ? "Tư vấn thiết kế 3D chuyên sâu" : "Deep 3D Design Consulting",
+        lang === 'vi' ? "Cung cấp bàn ghế Cyber Game" : "Cyber Gaming Furniture Supply",
+        lang === 'vi' ? "Lắp đặt phần cứng & Phần mềm" : "Hardware & Software Setup"
+      ],
+      cta: lang === 'vi' ? "TƯ VẤN THI CÔNG" : "GET CONSULTING",
+      highlight: false
+    }
+  ];
+
   return (
-    <section id="gói-giải-pháp" className="py-32 px-6 border-t border-slate-200 bg-white">
-      <div className="max-w-7xl mx-auto">
+    <section id="gói-giải-pháp" className="py-32 px-6 bg-slate-50/50">
+      <div className="max-w-6xl mx-auto">
         <div className="text-center mb-24 reveal">
-          <div className="inline-block px-5 py-2 bg-red-600/5 border border-red-600/10 text-red-600 text-sm font-black uppercase tracking-widest mb-8">Minh bạch & Trách nhiệm</div>
-          <h2 className="text-[clamp(2.5rem,5vw,5rem)] font-black uppercase tracking-tighter mb-8 leading-tight text-[#0f172a]">GÓI GIẢI PHÁP VẬN HÀNH</h2>
-          <p className="text-slate-500 font-bold max-w-3xl mx-auto uppercase text-base md:text-lg tracking-[0.2em] leading-relaxed">
-            CAG Billing phát hành miễn phí vì cộng đồng iCafe. <br className="hidden md:block" /> 
-            Phí dịch vụ chỉ áp dụng khi quý khách cần kỹ thuật hỗ trợ chuyên sâu và update game.
-          </p>
+          <p className="text-[10px] font-black uppercase tracking-[0.5em] text-red-600 mb-6 italic">Investment</p>
+          <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight text-[#0f172a] mb-6">GIẢI PHÁP ĐẦU TƯ</h2>
+          <div className="w-20 h-1 bg-red-600 mx-auto"></div>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 reveal">
+        <div className="grid lg:grid-cols-3 gap-6">
           {tiers.map((tier, idx) => (
-            <div key={idx} className={`relative p-10 md:p-12 bg-white rounded-[2rem] border border-slate-200 transition-all duration-500 hover:shadow-2xl group ${tier.popular ? 'ring-2 ring-red-600/20 bg-slate-50/30' : ''} ${tier.isFree ? 'border-green-100 bg-green-50/10' : ''}`}>
-              {tier.popular && (
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-6 py-2 bg-red-600 text-white text-[10px] font-black uppercase tracking-widest rounded-full shadow-lg">PHỔ BIẾN NHẤT</div>
-              )}
-              {tier.isFree && (
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-6 py-2 bg-green-600 text-white text-[10px] font-black uppercase tracking-widest rounded-full shadow-lg">CỘNG ĐỒNG 0Đ</div>
-              )}
+            <div key={idx} className={`reveal relative p-10 rounded-[2.5rem] border transition-all duration-700 ${tier.highlight ? 'bg-slate-900 text-white border-slate-900 shadow-2xl scale-105 z-10' : 'bg-white text-[#0f172a] border-slate-100 shadow-sm hover:shadow-xl'}`}>
+              <h3 className={`text-[11px] font-black uppercase tracking-[0.3em] mb-10 ${tier.highlight ? 'text-red-500' : 'text-slate-400'}`}>{tier.name}</h3>
               
-              <h3 className={`text-sm font-black uppercase tracking-[0.4em] mb-8 ${tier.isFree ? 'text-green-600' : 'text-red-600'}`}>{tier.name}</h3>
-              <p className="text-slate-500 text-sm md:text-base mb-12 font-bold leading-relaxed h-14">{tier.description}</p>
-              
-              <div className="flex items-baseline gap-3 mb-14">
-                <span className={`text-5xl font-black italic tracking-tighter text-[#0f172a] uppercase ${tier.isFree ? "text-green-600" : tier.price === "0 VNĐ" ? "red-gradient-text" : ""}`}>{tier.price}</span>
-                {tier.unit && <span className="text-slate-400 text-xs font-black uppercase tracking-widest">{tier.unit}</span>}
+              <div className="mb-10">
+                <span className="text-5xl font-black italic tracking-tighter">{tier.price}</span>
+                <span className={`text-[10px] font-bold ml-2 uppercase tracking-widest ${tier.highlight ? 'text-slate-500' : 'text-slate-400'}`}>{tier.currency}</span>
               </div>
 
-              <ul className="space-y-6 mb-16 h-[320px]">
-                {tier.features.map((feature, fIdx) => (
-                  <li key={fIdx} className="flex items-start gap-4 text-sm font-bold uppercase tracking-widest text-slate-500 group-hover:text-[#0f172a] transition-colors leading-snug">
-                    <div className={`w-1.5 h-1.5 mt-1.5 shrink-0 rounded-full ${tier.isFree ? 'bg-green-500' : 'bg-red-600'}`}></div>
-                    {feature}
+              <p className={`text-xs font-bold uppercase tracking-widest mb-12 ${tier.highlight ? 'text-slate-400' : 'text-slate-500'}`}>{tier.desc}</p>
+
+              <ul className="space-y-6 mb-16 border-t pt-10 border-slate-200/10">
+                {tier.features.map((f, i) => (
+                  <li key={i} className="flex items-center gap-4 text-[10px] font-bold uppercase tracking-[0.15em]">
+                    <div className={`w-1 h-1 rounded-full ${tier.highlight ? 'bg-red-500' : 'bg-slate-300'}`}></div>
+                    {f}
                   </li>
                 ))}
               </ul>
 
-              <div className="space-y-4">
-                <a 
-                  href={tier.link}
-                  target={tier.link.startsWith('http') ? '_blank' : '_self'}
-                  className={`block w-full py-6 text-center font-black text-xs uppercase tracking-[0.3em] transition-all rounded-xl ${
-                    tier.isFree 
-                    ? 'bg-green-600 text-white hover:bg-[#0f172a] shadow-lg shadow-green-600/20' 
-                    : tier.popular
-                    ? 'bg-red-600 text-white hover:bg-[#0f172a] shadow-lg shadow-red-600/20' 
-                    : 'bg-white text-[#0f172a] hover:bg-red-600 hover:text-white border border-slate-200'
-                  }`}
-                >
-                  {tier.cta}
-                </a>
-                <p className={`text-center text-[10px] font-bold uppercase tracking-widest ${tier.isFree ? 'text-green-600' : 'text-slate-400'}`}>{tier.subCta}</p>
-              </div>
+              <a 
+                href={idx === 1 ? "https://cagboot.com/cam-nang-icafe/chinh-sach-suport-phan-mem-cap-nhat-game-tu-dong-cho-khach-hang-34.html" : "#dang-ky-cai-dat"}
+                className={`block w-full py-5 text-center text-[10px] font-black uppercase tracking-[0.3em] rounded-full transition-all duration-300 ${tier.highlight ? 'bg-red-600 hover:bg-white hover:text-[#0f172a]' : 'bg-slate-50 hover:bg-red-600 hover:text-white border border-slate-100'}`}
+              >
+                {tier.cta}
+              </a>
             </div>
           ))}
-        </div>
-        
-        <div className="mt-24 text-center reveal">
-          <div className="max-w-3xl mx-auto p-8 rounded-3xl bg-slate-50 border border-slate-100 border-dashed">
-             <p className="text-slate-600 text-sm font-bold uppercase tracking-[0.1em] leading-relaxed">
-              * Chúng tôi cam kết CAG Billing là dự án phi lợi nhuận dành cho cộng đồng iCafe. <br />
-              Dữ liệu của khách hàng là bảo mật tuyệt đối. Hỗ trợ kỹ thuật là tùy chọn không bắt buộc.
-            </p>
-          </div>
         </div>
       </div>
     </section>
