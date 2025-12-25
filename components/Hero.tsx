@@ -54,7 +54,7 @@ const Hero: React.FC = () => {
 
             {/* Secondary Action: Download Free */}
             <a 
-              href="https://cagpro.cloud/download/download.php"
+              href="https://download.cagpro.cloud/download/download.php"
               target="_blank"
               rel="noopener noreferrer" 
               className="group relative w-full sm:w-auto h-16 px-8 flex items-center justify-center bg-[#0f172a] hover:bg-slate-800 text-white font-black uppercase text-[11px] tracking-[0.2em] rounded-full transition-all duration-300 shadow-xl shadow-slate-900/20 transform hover:-translate-y-1 border border-slate-700"

@@ -16,11 +16,17 @@ export interface OEMRegistrationData {
   message: string;
 }
 
-// Cấu hình Bot Telegram chính thức
-const TELEGRAM_BOT_TOKEN = '8539902190:AAG4M8q6C4wOve5G0HalriIt6ovi0Vn5vho'; 
-const TELEGRAM_CHAT_ID = '2050706796'; 
+// Cấu hình Bot Telegram - Sử dụng biến môi trường để bảo mật
+// LƯU Ý: Không điền trực tiếp Token vào đây khi đưa lên GitHub
+const TELEGRAM_BOT_TOKEN = typeof process !== 'undefined' ? process.env.TELEGRAM_BOT_TOKEN : ''; 
+const TELEGRAM_CHAT_ID = typeof process !== 'undefined' ? process.env.TELEGRAM_CHAT_ID : ''; 
 
 export const sendToTelegram = async (data: RegistrationData) => {
+  if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) {
+    console.error("LỖI CẤU HÌNH: Thiếu TELEGRAM_BOT_TOKEN hoặc TELEGRAM_CHAT_ID trong biến môi trường.");
+    return false;
+  }
+
   const message = `
 🚀 **THÔNG BÁO: KHÁCH ĐĂNG KÝ CAG PRO** 🚀
 ━━━━━━━━━━━━━━━━━━━━
@@ -55,6 +61,11 @@ _${data.issues || 'Cần tư vấn giải pháp tối ưu chi phí.'}_
 };
 
 export const sendOEMToTelegram = async (data: OEMRegistrationData) => {
+  if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) {
+    console.error("LỖI CẤU HÌNH: Thiếu TELEGRAM_BOT_TOKEN hoặc TELEGRAM_CHAT_ID.");
+    return false;
+  }
+
   const message = `
 💎 **HỢP TÁC CHIẾN LƯỢC OEM PARTNER** 💎
 ━━━━━━━━━━━━━━━━━━━━
