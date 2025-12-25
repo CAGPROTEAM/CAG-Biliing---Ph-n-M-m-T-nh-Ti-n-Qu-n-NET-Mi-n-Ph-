@@ -194,6 +194,19 @@ const ImageGallery: React.FC = () => {
                   <h3 className="text-2xl md:text-3xl font-black uppercase tracking-tight text-[#0f172a] mb-8 leading-tight group-hover:text-red-600 transition-colors duration-700">
                     {img.title}
                   </h3>
+                  
+                  {img.tag === 'HARDWARE' && (
+                    <a 
+                      href="#" 
+                      className="inline-block px-6 py-2 mb-8 bg-red-600 text-white text-[10px] font-bold uppercase tracking-widest rounded-full hover:bg-slate-900 transition-all shadow-lg shadow-red-600/20 transform hover:-translate-y-1"
+                      onClick={(e) => {
+                          e.stopPropagation();
+                      }}
+                    >
+                      {lang === 'vi' ? 'MUA NGAY' : 'BUY NOW'}
+                    </a>
+                  )}
+
                   <div className="flex items-center gap-6 text-slate-300 text-[12px] font-black uppercase tracking-[0.3em]">
                     <span className="w-16 h-[2px] bg-slate-100 group-hover:w-24 transition-all duration-700 group-hover:bg-red-200"></span>
                     <span>Explore Interface Details</span>
